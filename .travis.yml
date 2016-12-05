@@ -1,0 +1,4 @@
+install: sudo apt-get install vera++
+language: cpp
+compiler: g++
+script: bash .travis.sh
