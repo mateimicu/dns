@@ -1,8 +1,7 @@
 BASEDIR=dns/
 CC=g++
 # CFLAGS=-c -Wall
-CFLAGS=-c -Werror=all
-LDFLAGS=
+CFLAGS=-c -Werror=all -std=c++0x
 SOURCES=$(BASEDIR)main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=$(BASEDIR)dns
@@ -10,7 +9,7 @@ EXECUTABLE=$(BASEDIR)dns
 all: $(SOURCES) $(EXECUTABLE)
     
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC)  $(OBJECTS) -o $@
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
 
