@@ -1,17 +1,11 @@
 BASEDIR=dns/
 CC=g++
-# CFLAGS=-c -Wall
-CFLAGS=-c -Werror=all -std=c++0x
-SOURCES=$(BASEDIR)main.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
+CFLAGS= -Werror=all -std=c++0x
+SOURCES=$(BASEDIR)*.cpp
 EXECUTABLE=$(BASEDIR)dns
 
-all: $(SOURCES) $(EXECUTABLE)
-    
-$(EXECUTABLE): $(OBJECTS) 
-	$(CC)  $(OBJECTS) -o $@
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+all: 
+	$(CC) $(CFLAGS) $(SOURCES) -o $(EXECUTABLE)
 
 doxygen :
 	@echo " DOXY Docs"
