@@ -1,7 +1,9 @@
 install: sudo apt-get install vera++ doxygen graphviz
 language: cpp
 compiler: g++
-script: bash travis/vera.sh
+script: 
+    - bash travis/vera.sh
+    - bash travis/make_test.sh
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_966b081d555a_key -iv $encrypted_966b081d555a_iv
