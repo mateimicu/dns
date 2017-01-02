@@ -12,3 +12,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
+
+doxygen :
+	@echo " DOXY Docs"
+	@doxygen config/Doxyfile
