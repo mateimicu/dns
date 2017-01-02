@@ -4,7 +4,7 @@
 REPO_PATH=git@github.com:micumatei/dns.git
 HTML_PATH=docs/html
 COMMIT_USER="Documentation Builder"
-COMMIT_EMAIL="travis@gockelhut.com"
+COMMIT_EMAIL="micumatei@gmail.com"
 CHANGESET=$(git rev-parse --verify HEAD)
 
 # Get a clean version of the HTML documentation repo.
