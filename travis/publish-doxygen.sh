@@ -2,7 +2,7 @@
 
 # Settings
 REPO_PATH=git@github.com:micumatei/dns.git
-HTML_PATH=docs/html
+HTML_PATH=html
 COMMIT_USER="Documentation Builder"
 COMMIT_EMAIL="micumatei@gmail.com"
 CHANGESET=$(git rev-parse --verify HEAD)
