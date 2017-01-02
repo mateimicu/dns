@@ -1,6 +1,7 @@
 BASEDIR=dns/
 CC=g++
-CFLAGS=-c -Wall
+# CFLAGS=-c -Wall
+CFLAGS=-c -Werror=all
 LDFLAGS=
 SOURCES=$(BASEDIR)main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
