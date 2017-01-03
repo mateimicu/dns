@@ -81,19 +81,16 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
-<code>#include &quot;<a class="el" href="../../d5/d36/parser_8h_source.html">parser.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="../../d4/d03/exceptions_8h_source.html">exceptions.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/dce/main_8cpp__incl.png" border="0" usemap="#dns_2main_8cpp" alt=""/></div>
 <map name="dns_2main_8cpp" id="dns_2main_8cpp">
-<area shape="rect" id="node5" href="../../d5/d36/parser_8h.html" title="parser.h" alt="" coords="101,83,171,112"/><area shape="rect" id="node11" href="../../d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="195,83,291,112"/></map>
+</map>
 </div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Parser&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a7f134caea49894cfd2916c0b30877ec6">prepare_parser</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
@@ -122,54 +119,8 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <div class="fragment"><pre class="fragment">{
-    Parser p = <a class="code" href="../../df/d0a/main_8cpp.html#a7f134caea49894cfd2916c0b30877ec6">prepare_parser</a>();
-    p.parse(argc, argv);
+    cout &lt;&lt; <span class="stringliteral">&quot; DNS ! &quot;</span>  &lt;&lt; endl;
     <span class="keywordflow">return</span> 0;
-}
-</pre></div>
-</div>
-</div>
-<a class="anchor" id="a7f134caea49894cfd2916c0b30877ec6"></a><!-- doxytag: member="main.cpp::prepare_parser" ref="a7f134caea49894cfd2916c0b30877ec6" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Parser <a class="el" href="../../df/d0a/main_8cpp.html#a7f134caea49894cfd2916c0b30877ec6">prepare_parser</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<div class="fragment"><pre class="fragment">                       {
-    <span class="comment">/* Pregateste parserul cu toate valorile */</span>
-    Parser parser;
-    StrOption* verbosity = <span class="keyword">new</span> StrOption(<span class="charliteral">&#39;v&#39;</span>, <span class="stringliteral">&quot;verbose&quot;</span>, <span class="stringliteral">&quot;Verbosity level(v, vv, vvv).&quot;</span>, <span class="keyword">false</span>);
-    verbosity-&gt;set_default(<span class="stringliteral">&quot;v&quot;</span>);
-
-    BoolOption* debug = <span class="keyword">new</span> BoolOption(<span class="charliteral">&#39;d&#39;</span>, <span class="stringliteral">&quot;debug&quot;</span>, <span class="stringliteral">&quot;Debug mode(default false).&quot;</span>, <span class="keyword">false</span>);
-    debug-&gt;set_default(<span class="keyword">false</span>);
-
-    IntOption* port = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;p&#39;</span>, <span class="stringliteral">&quot;port&quot;</span>, <span class="stringliteral">&quot;The port(defualt 53).&quot;</span>, <span class="keyword">false</span>);
-    port-&gt;set_default(53);
-
-    IntOption* min_threads = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;t&#39;</span>, <span class="stringliteral">&quot;min_threads&quot;</span>, <span class="stringliteral">&quot;The min. number of threads, or the base threads (default 2).&quot;</span>, <span class="keyword">false</span>);
-    min_threads-&gt;set_default(2);
-
-    IntOption* max_threads = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;m&#39;</span>, <span class="stringliteral">&quot;max_threads&quot;</span>, <span class="stringliteral">&quot;The max. number of threads (default 12).&quot;</span>, <span class="keyword">false</span>);
-    min_threads-&gt;set_default(12);
-
-    StrOption* config_file_path = <span class="keyword">new</span> StrOption(<span class="charliteral">&#39;c&#39;</span>, <span class="stringliteral">&quot;config&quot;</span>, <span class="stringliteral">&quot;Config file path.&quot;</span>, <span class="keyword">false</span>);
-    config_file_path-&gt;set_default(<span class="stringliteral">&quot;&quot;</span>);
-
-    parser.add_option(verbosity);
-    parser.add_option(debug);
-    parser.add_option(port);
-    parser.add_option(min_threads);
-    parser.add_option(max_threads);
-    parser.add_option(config_file_path);
-    <span class="keywordflow">return</span> parser;
 }
 </pre></div>
 </div>
@@ -180,7 +131,7 @@ Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -192,7 +143,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 3 2017 03:59:36 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 3 2017 04:00:05 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
