@@ -1,0 +1,6 @@
+digraph "dns" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  dir_7f97aca9e28453dffc8e7382c24677c5 [shape=box, label="dns", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_7f97aca9e28453dffc8e7382c24677c5.html"];
+}

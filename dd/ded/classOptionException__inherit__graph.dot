@@ -1,0 +1,24 @@
+digraph "OptionException"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="OptionException",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ParserException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d55/classParserException.html"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="BaseException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d6c/classBaseException.html"];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="std::exception",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="BoolException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d1d/classBoolException.html"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="BoolValueError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d84/classBoolValueError.html"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="IntException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d2b/classIntException.html"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="IntValueError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d01/classIntValueError.html"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="StrException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d19/classStrException.html"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="StrValueError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/da6/classStrValueError.html"];
+}
