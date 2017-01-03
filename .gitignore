@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+# Main executable
+dns/dns
