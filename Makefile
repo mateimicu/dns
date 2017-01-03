@@ -1,6 +1,6 @@
 BASEDIR=dns/
 CC=g++
-CFLAGS= -Werror=all -std=c++0x
+CFLAGS= -g -Werror=all -std=c++0x
 SOURCES=$(BASEDIR)*.cpp
 EXECUTABLE=$(BASEDIR)dns
 
