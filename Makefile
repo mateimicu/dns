@@ -15,6 +15,11 @@ all:
 tests:
 	$(CC) $(CFLAGS) $(UTILS) $(FRAMEWORK) $(TESTS) -o $(UNITTESTS_EXECUTABLE)
 
+install-deps:
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install libc6:i386 libstdc++6:i386 g++
+
 doxygen :
 	@echo " DOXY Docs"
 	@doxygen config/Doxyfile
