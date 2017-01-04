@@ -1,7 +1,7 @@
 BASEDIR=dns/
 CC=g++
 CFLAGS= -g -Werror=all -std=c++0x
-UTILS=$(BASEDIR)parser.cpp $(BASEDIR)exceptions.cpp
+UTILS=$(BASEDIR)parser.cpp $(BASEDIR)exceptions.cpp $(BASEDIR)dns.cpp
 MAIN=$(BASEDIR)main.cpp
 EXECUTABLE=$(BASEDIR)dns
 
