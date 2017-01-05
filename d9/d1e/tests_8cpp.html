@@ -81,15 +81,18 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="title">dns/unittests/tests.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;catch.hpp&quot;</code><br/>
+<div class="textblock"><code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;iostream&gt;</code><br/>
+<code>#include &quot;catch.hpp&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../d5/d36/parser_8h_source.html">../parser.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../d4/d03/exceptions_8h_source.html">../exceptions.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../d5/d2e/dns_8h_source.html">../dns.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for tests.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dc/d70/tests_8cpp__incl.png" border="0" usemap="#dns_2unittests_2tests_8cpp" alt=""/></div>
 <map name="dns_2unittests_2tests_8cpp" id="dns_2unittests_2tests_8cpp">
-<area shape="rect" id="node57" href="../../d5/d36/parser_8h.html" title="../parser.h" alt="" coords="637,83,717,112"/><area shape="rect" id="node61" href="../../d4/d03/exceptions_8h.html" title="../exceptions.h" alt="" coords="2440,83,2547,112"/></map>
+<area shape="rect" id="node59" href="../../d5/d36/parser_8h.html" title="../parser.h" alt="" coords="2464,83,2544,112"/><area shape="rect" id="node63" href="../../d4/d03/exceptions_8h.html" title="../exceptions.h" alt="" coords="2619,83,2725,112"/><area shape="rect" id="node68" href="../../d5/d2e/dns_8h.html" title="../dns.h" alt="" coords="821,83,888,112"/></map>
 </div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
@@ -97,7 +100,9 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/tests_8cpp.html#a656eb5868e824d59f489f910db438420">CATCH_CONFIG_MAIN</a></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/tests_8cpp.html#ae8a6f0d2662b3076cb98864ef7fc69e9">TEST_CASE</a> (&quot;Test &quot;,&quot;[test]&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/tests_8cpp.html#a6b0c8197d1e8ca5d08fb65bf092d4bb6">TEST_CASE</a> (&quot;DNS-Question&quot;,&quot;[DNS-Question]&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/tests_8cpp.html#a1435b0d62469902511952301e0b40ed9">TEST_CASE</a> (&quot;DNS-Resource&quot;,&quot;[DNS-Resource]&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/tests_8cpp.html#a1efedd98a460f1f95f115b15acf7c9ff">TEST_CASE</a> (&quot;DNS-Tranzaction&quot;,&quot;[DNS-Tranzaction]&quot;)</td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="a656eb5868e824d59f489f910db438420"></a><!-- doxytag: member="tests.cpp::CATCH_CONFIG_MAIN" ref="a656eb5868e824d59f489f910db438420" args="" -->
@@ -114,21 +119,21 @@ Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ae8a6f0d2662b3076cb98864ef7fc69e9"></a><!-- doxytag: member="tests.cpp::TEST_CASE" ref="ae8a6f0d2662b3076cb98864ef7fc69e9" args="(&quot;Test &quot;,&quot;[test]&quot;)" -->
+<a class="anchor" id="a6b0c8197d1e8ca5d08fb65bf092d4bb6"></a><!-- doxytag: member="tests.cpp::TEST_CASE" ref="a6b0c8197d1e8ca5d08fb65bf092d4bb6" args="(&quot;DNS&#45;Question&quot;,&quot;[DNS&#45;Question]&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d9/d1e/tests_8cpp.html#ae8a6f0d2662b3076cb98864ef7fc69e9">TEST_CASE</a> </td>
+          <td class="memname"><a class="el" href="../../d9/d1e/tests_8cpp.html#a1efedd98a460f1f95f115b15acf7c9ff">TEST_CASE</a> </td>
           <td>(</td>
-          <td class="paramtype">&quot;Test &quot;&#160;</td>
+          <td class="paramtype">&quot;DNS-Question&quot;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&quot;&quot;&#160;</td>
-          <td class="paramname">[test]&#160;</td>
+          <td class="paramname">[DNS-Question]&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -139,8 +144,463 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <div class="fragment"><pre class="fragment">{
-    <span class="comment">/* Dummy unittest */</span>
-    REQUIRE(1 == 1);
+    Question q; 
+    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> len = 2;
+    <span class="keywordtype">int</span> cmp = -100;
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - name&quot;</span>)
+    {
+        <span class="keywordtype">char</span>* name;
+        name = (<span class="keywordtype">char</span>*)1; <span class="comment">/* Trebuie sa fie diferit de NULL */</span>
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> length;
+
+        q.get_name(&amp;name, length);
+        REQUIRE(length == 0);
+        REQUIRE(name == NULL);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - type&quot;</span>)
+    {
+        <span class="keywordtype">char</span> type[len];
+        memset(type, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(type));
+        q.get_type(type);
+        cmp = strncmp(type, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - class&quot;</span>)
+    {
+        <span class="keywordtype">char</span> cls[len];
+        memset(cls, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(cls));
+        q.get_class(cls);
+        cmp = strncmp(cls, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - name&quot;</span>)
+    {
+
+        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 1; i &lt;= 10; i++){
+            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> aux_len = 0;
+            <span class="keywordtype">char</span> name_set[i];
+            <span class="keywordtype">char</span>* name_get = NULL;
+            memset(name_set, <span class="charliteral">&#39;f&#39;</span>,  i);
+
+            q.set_name(name_set, i);
+            q.get_name(&amp;name_get, aux_len);
+
+            cmp = strncmp(name_set, name_get, aux_len);
+
+            REQUIRE(i == aux_len);
+            REQUIRE(cmp == 0);
+        }
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - type&quot;</span>)
+    {
+        <span class="keywordtype">char</span> type_set[len];
+        <span class="keywordtype">char</span> type_get[len];
+        memset(type_set, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(type_set));
+        memset(type_set, <span class="charliteral">&#39;x&#39;</span>,  <span class="keyword">sizeof</span>(type_get));
+        q.set_type(type_set);
+        q.get_type(type_get);
+
+        cmp = strncmp(type_set, type_get, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - class&quot;</span>)
+    {
+        <span class="keywordtype">char</span> cls_set[len];
+        <span class="keywordtype">char</span> cls_get[len];
+        memset(cls_set, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(cls_set));
+        memset(cls_set, <span class="charliteral">&#39;x&#39;</span>,  <span class="keyword">sizeof</span>(cls_get));
+        q.set_class(cls_set);
+        q.get_class(cls_get);
+
+        cmp = strncmp(cls_set, cls_get, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a1435b0d62469902511952301e0b40ed9"></a><!-- doxytag: member="tests.cpp::TEST_CASE" ref="a1435b0d62469902511952301e0b40ed9" args="(&quot;DNS&#45;Resource&quot;,&quot;[DNS&#45;Resource]&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d1e/tests_8cpp.html#a1efedd98a460f1f95f115b15acf7c9ff">TEST_CASE</a> </td>
+          <td>(</td>
+          <td class="paramtype">&quot;DNS-Resource&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;&quot;&#160;</td>
+          <td class="paramname">[DNS-Resource]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="fragment"><pre class="fragment">{
+    Resource res; 
+    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> len = 2;
+    <span class="keywordtype">int</span> cmp = -100;
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - name&quot;</span>)
+    {
+        <span class="keywordtype">char</span>* name;
+        name = (<span class="keywordtype">char</span>*)1; <span class="comment">/* Trebuie sa fie diferit de NULL */</span>
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> length;
+
+        res.get_name(&amp;name, length);
+        REQUIRE(length == 0);
+        REQUIRE(name == NULL);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - type&quot;</span>)
+    {
+        <span class="keywordtype">char</span> type[len];
+        memset(type, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(type));
+        res.get_type(type);
+        cmp = strncmp(type, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - class&quot;</span>)
+    {
+        <span class="keywordtype">char</span> cls[len];
+        memset(cls, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(cls));
+        res.get_class(cls);
+        cmp = strncmp(cls, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - data&quot;</span>)
+    {
+        <span class="keywordtype">char</span> *data = (<span class="keywordtype">char</span>*)1;
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> len = 1;
+
+        res.get_data(&amp;data, len);
+        REQUIRE(len == 0);
+        REQUIRE(data == NULL);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - name&quot;</span>)
+    {
+
+        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 1; i &lt;= 10; i++){
+            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> aux_len = 0;
+            <span class="keywordtype">char</span> name_set[i];
+            <span class="keywordtype">char</span>* name_get = NULL;
+            memset(name_set, <span class="charliteral">&#39;f&#39;</span>,  i);
+
+            res.set_name(name_set, i);
+            res.get_name(&amp;name_get, aux_len);
+
+            cmp = strncmp(name_set, name_get, aux_len);
+
+            REQUIRE(i == aux_len);
+            REQUIRE(cmp == 0);
+        }
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - type&quot;</span>)
+    {
+        <span class="keywordtype">char</span> type_set[len];
+        <span class="keywordtype">char</span> type_get[len];
+        memset(type_set, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(type_set));
+        memset(type_set, <span class="charliteral">&#39;x&#39;</span>,  <span class="keyword">sizeof</span>(type_get));
+        res.set_type(type_set);
+        res.get_type(type_get);
+
+        cmp = strncmp(type_set, type_get, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - class&quot;</span>)
+    {
+        <span class="keywordtype">char</span> cls_set[len];
+        <span class="keywordtype">char</span> cls_get[len];
+        memset(cls_set, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(cls_set));
+        memset(cls_set, <span class="charliteral">&#39;x&#39;</span>,  <span class="keyword">sizeof</span>(cls_get));
+        res.set_class(cls_set);
+        res.get_class(cls_get);
+
+        cmp = strncmp(cls_set, cls_get, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - data&quot;</span>)
+
+    {
+
+        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 1; i &lt;= 10; i++){
+            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> aux_len = 0;
+            <span class="keywordtype">char</span> data_set[i];
+            <span class="keywordtype">char</span>* data_get = NULL;
+            memset(data_set, <span class="charliteral">&#39;f&#39;</span>,  i);
+
+            res.set_name(data_set, i);
+            res.get_name(&amp;data_get, aux_len);
+
+            cmp = strncmp(data_set, data_get, aux_len);
+
+            REQUIRE(i == aux_len);
+            REQUIRE(cmp == 0);
+        }
+    }
+
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a1efedd98a460f1f95f115b15acf7c9ff"></a><!-- doxytag: member="tests.cpp::TEST_CASE" ref="a1efedd98a460f1f95f115b15acf7c9ff" args="(&quot;DNS&#45;Tranzaction&quot;,&quot;[DNS&#45;Tranzaction]&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d1e/tests_8cpp.html#a1efedd98a460f1f95f115b15acf7c9ff">TEST_CASE</a> </td>
+          <td>(</td>
+          <td class="paramtype">&quot;DNS-Tranzaction&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;&quot;&#160;</td>
+          <td class="paramname">[DNS-Tranzaction]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="fragment"><pre class="fragment">{
+    Tranzaction tr;
+    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> len = 2;
+    <span class="keywordtype">int</span> cmp = -100;
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - id&quot;</span>)
+    {
+        <span class="keywordtype">char</span> <span class="keywordtype">id</span>[len];
+        memset(<span class="keywordtype">id</span>, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(<span class="keywordtype">id</span>));
+        tr.get_id(<span class="keywordtype">id</span>);
+        cmp = strncmp(<span class="keywordtype">id</span>, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - flags&quot;</span>)
+    {
+        <span class="keywordtype">char</span> flags[len];
+        memset(flags, <span class="charliteral">&#39;f&#39;</span>,  <span class="keyword">sizeof</span>(flags));
+        tr.get_flags(flags);
+        cmp = strncmp(flags, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+
+        REQUIRE(cmp == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - qcount&quot;</span>)
+    {
+        <span class="keywordtype">char</span> qcount[len];
+        memset(qcount, <span class="charliteral">&#39;f&#39;</span>, len);
+
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> rez;
+        tr.get_qcount_char(qcount);
+        rez = tr.get_qcount_short();
+
+        cmp = strncmp(qcount, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+        REQUIRE(cmp == 0);
+        REQUIRE(rez == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - ancount&quot;</span>)
+    {
+        <span class="keywordtype">char</span> ancount[len];
+        memset(ancount, <span class="charliteral">&#39;f&#39;</span>, len);
+
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> rez;
+        tr.get_ancount_char(ancount);
+        rez = tr.get_ancount_short();
+
+        cmp = strncmp(ancount, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+        REQUIRE(cmp == 0);
+        REQUIRE(rez == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - nscount&quot;</span>)
+    {
+        <span class="keywordtype">char</span> nscount[len];
+        memset(nscount, <span class="charliteral">&#39;f&#39;</span>, len);
+
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> rez;
+        tr.get_nscount_char(nscount);
+        rez = tr.get_nscount_short();
+
+        cmp = strncmp(nscount, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+        REQUIRE(cmp == 0);
+        REQUIRE(rez == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test default constructor - arcount&quot;</span>)
+    {
+        <span class="keywordtype">char</span> arcount[len];
+        memset(arcount, <span class="charliteral">&#39;f&#39;</span>, len);
+
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> rez;
+        tr.get_arcount_char(arcount);
+        rez = tr.get_arcount_short();
+
+        cmp = strncmp(arcount, <span class="stringliteral">&quot;\0\0&quot;</span>, len);
+        REQUIRE(cmp == 0);
+        REQUIRE(rez == 0);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - id&quot;</span>)
+    {
+        <span class="keywordtype">char</span> id_set[2],
+             id_get[2];
+        
+        <span class="keywordflow">for</span>(<span class="keywordtype">char</span> i =<span class="charliteral">&#39;a&#39;</span>; i &lt;= <span class="charliteral">&#39;c&#39;</span>; i++)
+        {
+            id_set[0] = i;
+            id_set[1] = i+1;
+
+            tr.set_id(id_set);
+            tr.get_id(id_get);
+
+            cmp = strncmp(id_set, id_get, 2);
+            REQUIRE(cmp == 0);
+        }
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - flags&quot;</span>)
+    {
+        <span class="keywordtype">char</span> flags_set[2],
+             flags_get[2];
+        
+        <span class="keywordflow">for</span>(<span class="keywordtype">char</span> i =<span class="charliteral">&#39;a&#39;</span>; i &lt;= <span class="charliteral">&#39;c&#39;</span>; i++)
+        {
+            flags_set[0] = i;
+            flags_set[1] = i+1;
+
+            tr.set_flags(flags_set);
+            tr.get_flags(flags_get);
+            cmp = strncmp(flags_set, flags_get, 2);
+            REQUIRE(cmp == 0);
+        }
+    }
+
+
+    SECTION(<span class="stringliteral">&quot;Test setter - questions&quot;</span>)
+    {
+        Question q1, q2;
+
+        REQUIRE(tr.get_qcount_short() == 0);
+        
+        <span class="comment">/* One question */</span>
+        tr.add_question(q1);
+        std::vector&lt;Question&gt; questions;
+        questions = tr.get_questions();
+
+        REQUIRE(tr.get_qcount_short() == 1);
+        REQUIRE(questions.size() == 1);
+        
+        <span class="comment">/* Two question */</span>
+        tr.add_question(q2);
+        questions = tr.get_questions();
+
+        REQUIRE(tr.get_qcount_short() == 2);
+        REQUIRE(questions.size() == 2);
+        
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - answers&quot;</span>)
+    {
+        Resource r1, r2;
+
+        REQUIRE(tr.get_ancount_short() == 0);
+        
+        <span class="comment">/* One resources */</span>
+        tr.add_answer(r1);
+        std::vector&lt;Resource&gt; resource;
+        resource = tr.get_answers();
+
+        REQUIRE(tr.get_ancount_short() == 1);
+        REQUIRE(resource.size() == 1);
+        
+        <span class="comment">/* Two resouces */</span>
+        tr.add_answer(r2);
+        resource = tr.get_answers();
+
+        REQUIRE(tr.get_ancount_short() == 2);
+        REQUIRE(resource.size() == 2);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - authority&quot;</span>)
+    {
+        Resource r1, r2;
+
+        REQUIRE(tr.get_nscount_short() == 0);
+        
+        <span class="comment">/* One resources */</span>
+        tr.add_authority(r1);
+        std::vector&lt;Resource&gt; resource;
+        resource = tr.get_authority();
+
+        REQUIRE(tr.get_nscount_short() == 1);
+        REQUIRE(resource.size() == 1);
+        
+        <span class="comment">/* Two resouces */</span>
+        tr.add_authority(r2);
+        resource = tr.get_authority();
+
+        REQUIRE(tr.get_nscount_short() == 2);
+        REQUIRE(resource.size() == 2);
+    }
+
+    SECTION(<span class="stringliteral">&quot;Test setter - additional_sections&quot;</span>)
+    {
+        Resource r1, r2;
+
+        REQUIRE(tr.get_arcount_short() == 0);
+        
+        <span class="comment">/* One resources */</span>
+        tr.add_additiona_section(r1);
+        std::vector&lt;Resource&gt; resource;
+        resource = tr.get_additional_sections();
+
+        REQUIRE(tr.get_arcount_short() == 1);
+        REQUIRE(resource.size() == 1);
+        
+        <span class="comment">/* Two resouces */</span>
+        tr.add_additiona_section(r2);
+        resource = tr.get_additional_sections();
+
+        REQUIRE(tr.get_arcount_short() == 2);
+        REQUIRE(resource.size() == 2);
+    }
+
 }
 </pre></div>
 </div>
@@ -163,7 +623,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 5 2017 07:38:07 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 5 2017 09:57:41 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
