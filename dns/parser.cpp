@@ -451,9 +451,9 @@ void Parser::parse(int argc, char* argv[]){
 
         /* Daca afisam mesajul de ajutor, nu mai parsam restul argumentelor.
          * Terminam totuși executia programului. */
-    }
         this->get_help();
         exit(0);
+    }
 
     for(std::vector<Option*>::iterator it = this->options.begin();
         it != this->options.end(); it++)
