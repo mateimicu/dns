@@ -97,4 +97,39 @@ class NotTheRightType: public ParserException
 {
    const char * what () const throw ();
 };
+
+class ServerException: public BaseException 
+{
+   const char * what () const throw ();
+};
+
+class SocketException: public ServerException 
+{
+   const char * what () const throw ();
+};
+
+class BindException: public ServerException 
+{
+   const char * what () const throw ();
+};
+
+class ListenException: public ServerException 
+{
+   const char * what () const throw ();
+};
+
+class NotOpenException: public ServerException 
+{
+   const char * what () const throw ();
+};
+
+class ServerNotOpen: public ServerException 
+{
+   const char * what () const throw ();
+};
+
+class ServerReadError: public ServerException 
+{
+   const char * what () const throw ();
+};
 #endif /* ifndef EXCEPTIONS_H */
