@@ -92,8 +92,9 @@ ssize_t Server::read(void *buf, size_t len, int flags,
      *  sockaddr structura umpluta cu informatiile clientului
      *  de la care am citit date
      *
-     * @param[out] addrlen
-     *  Lungimea structuri sockaddr
+     * @param[in, out] addrlen
+     *  La intreare accepta dimensiune structuri src_addr
+     *  La intreare returneaza dimensiune structuri src_addr completata
      */
     if (this->sock == 0)
     {
