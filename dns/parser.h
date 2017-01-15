@@ -1,3 +1,8 @@
+/* Copyright (C) Released under the
+ * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+ * Author: Micu Matei-Marius
+ */
+
 #ifndef PARTSE_H
 #define PARTSE_H value
 #include <string>
@@ -86,7 +91,8 @@ class BoolOption:public Option
 };
 
 
-class Parser{
+class Parser
+{
     private:
         /* TODO(mmicu): Use a map here */
         std::vector<Option*> options;

@@ -1,3 +1,8 @@
+/* Copyright (C) Released under the
+ * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+ * Author: Micu Matei-Marius
+ */
+
 #include "parser.h"
 #include "exceptions.h"
 
@@ -24,10 +29,14 @@ std::string pad_right(std::string const& str, size_t s)
      * @param[in] s
      *   Cat pading dorim sa ii adaugam
      */
-    if ( str.length() < s )
+    if (str.length() < s)
+    {
         return str + std::string(s-str.length(), ' ');
+    }
     else
+    {
         return str;
+    }
 }
 
 std::string pad_left(std::string const& str, size_t s)
@@ -41,36 +50,43 @@ std::string pad_left(std::string const& str, size_t s)
      *   Cat pading dorim sa ii adaugam
      */
     if ( str.length() < s )
+    {
         return std::string(s-str.length(), ' ') + str;
+    }
     else
+    {
         return str;
+    }
 }
 
 
-enum STR2INT_ERROR 
-{ 
-    S2I_SUCCESS, 
-    S2I_OVERFLOW, 
-    S2I_UNDERFLOW, 
-    S2I_INCONVERTIBLE 
+enum STR2INT_ERROR
+{
+    S2I_SUCCESS,
+    S2I_OVERFLOW,
+    S2I_UNDERFLOW,
+    S2I_INCONVERTIBLE
 };
 
 STR2INT_ERROR str2int (int &i, char const *s, int base = 0)
 {
     char *end;
-    long  l;
+    long  val;
     errno = 0;
-    l = strtol(s, &end, base);
-    if ((errno == ERANGE && l == LONG_MAX) || l > INT_MAX) {
+    val = strtol(s, &end, base);
+    if ((errno == ERANGE && val == LONG_MAX) || val > INT_MAX)
+    {
         return S2I_OVERFLOW;
     }
-    if ((errno == ERANGE && l == LONG_MIN) || l < INT_MIN) {
+    if ((errno == ERANGE && val == LONG_MIN) || val < INT_MIN)
+    {
         return S2I_UNDERFLOW;
     }
-    if (*s == '\0' || *end != '\0') {
+    if (*s == '\0' || *end != '\0')
+    {
         return S2I_INCONVERTIBLE;
     }
-    i = l;
+    i = val;
     return S2I_SUCCESS;
 }
 
@@ -113,37 +129,43 @@ std::string Option::get_help()
     ch[0] = this->short_name;
     ch[1] = 0;
     std::string to_ret = "  -" + std::string(ch) + ", --"+pad_right(this->long_name, 12) +
-                         "  "+pad_right("("+this->get_type() +")", 6) + " :"+ this->help_message + "\n";
+                         "  "+pad_right("("+this->get_type() +")", 6) + " :" +
+                         this->help_message + "\n";
     return to_ret;
 }
 
-void Option::set_value(std::string param_value){
+void Option::set_value(std::string param_value)
+{
     /* Seteaza valoarea parametrului
      *
      * @param param_value
-     *  Valoarea parametrului 
+     *  Valoarea parametrului
      */
     throw ParserException();
 }
 
-char Option::get_short_name(){
+char Option::get_short_name()
+{
     /* Returneaza numele scurt a optinui */
     return this->short_name;
 }
 
-std::string Option::get_long_name(){
+std::string Option::get_long_name()
+{
     /* Returneaza numele lung a optinui */
     return this->long_name;
 }
 
-bool Option::is_required(){
+bool Option::is_required()
+{
     /* Returneaza true daca optiunea este obligatori, fals
      * in caz contrar
      */
     return this->required;
 }
 
-std::string Option::get_type(){
+std::string Option::get_type()
+{
     /* Returneaza un string care reprezinta tipul optinui */
     return std::string("none");
 }
@@ -163,7 +185,7 @@ std::vector<std::string> Option::parse(std::vector<std::string> parameters)
         sh[0] = '-';
         sh[1] = this->short_name;
         sh[2] = 0;
-        if((std::string)(*it) == std::string(sh) ||
+        if ((std::string)(*it) == std::string(sh) ||
            (std::string)(*it) == "--"+this->long_name)
         {
             parameters.erase(it);
@@ -181,20 +203,23 @@ std::vector<std::string> Option::parse(std::vector<std::string> parameters)
     return parameters;
 }
 
-int Option::get_int(){
+int Option::get_int()
+{
     throw NotTheRightType();
 }
 
-std::string Option::get_string(){
+std::string Option::get_string()
+{
     throw NotTheRightType();
 }
 
-bool Option::get_bool(){
+bool Option::get_bool()
+{
     throw NotTheRightType();
 }
 
 /* IntMethods */
-IntOption::IntOption(char short_name, std::string long_name, 
+IntOption::IntOption(char short_name, std::string long_name,
                      std::string help_message, bool required):
     Option(short_name, long_name, help_message, required)
 {
@@ -224,11 +249,11 @@ int IntOption::get_int()
 
 void IntOption::set_default(int default_value)
 {
-    /* Seteaza valoarea default a acestei otiuni 
-     * 
+    /* Seteaza valoarea default a acestei otiuni
+     *
      * @param[in] defualt_value
      *  Valoarea default.
-     * */
+     */
     this->default_value = default_value;
     this->is_set = true; /* Putem sa o consideram setat */
     this->required = false; /* nu trebuie sa fie parsata de la CLI */
@@ -243,21 +268,22 @@ void IntOption::set_value(std::string parameter)
      */
     STR2INT_ERROR out = str2int(this->value, parameter.c_str(), 10);
 
-    if(out != S2I_SUCCESS)
+    if (out != S2I_SUCCESS)
     {
         throw IntValueError(parameter);
     }
     this->is_set = true;
 }
 
-std::string IntOption::get_type(){
+std::string IntOption::get_type()
+{
     /* Returneaza un string care reprezinta tipul optinui */
     return std::string("int");
 }
 
 /* String Methods */
 
-StrOption::StrOption(char short_name, std::string long_name, 
+StrOption::StrOption(char short_name, std::string long_name,
                      std::string help_message, bool required):
     Option(short_name, long_name, help_message, required)
 {
@@ -287,8 +313,8 @@ std::string StrOption::get_string()
 
 void StrOption::set_default(std::string default_value)
 {
-    /* Seteaza valoarea default a acestei otiuni 
-     * 
+    /* Seteaza valoarea default a acestei otiuni
+     *
      * @param[in] defualt_value
      *  Valoarea default.
      * */
@@ -308,13 +334,14 @@ void StrOption::set_value(std::string parameter)
     this->is_set = true;
 }
 
-std::string StrOption::get_type(){
+std::string StrOption::get_type()
+{
     /* Returneaza un string care reprezinta tipul optinui */
     return std::string("str");
 }
 
 /* Bool Methods */
-BoolOption::BoolOption(char short_name, std::string long_name, 
+BoolOption::BoolOption(char short_name, std::string long_name,
                      std::string help_message, bool required):
     Option(short_name, long_name, help_message, required)
 {
@@ -344,8 +371,8 @@ bool BoolOption::get_bool()
 
 void BoolOption::set_default(bool default_value)
 {
-    /* Seteaza valoarea default a acestei otiuni 
-     * 
+    /* Seteaza valoarea default a acestei otiuni
+     *
      * @param[in] defualt_value
      *  Valoarea default.
      * */
@@ -363,17 +390,17 @@ void BoolOption::set_value(std::string parameter)
      */
     std::string lower_param = parameter;
     /* Convert to lower case */
-    std::transform(lower_param.begin(), lower_param.end(), 
+    std::transform(lower_param.begin(), lower_param.end(),
                    lower_param.begin(), ::tolower);
 
-    if(lower_param == "true" || lower_param == "t")
+    if (lower_param == "true" || lower_param == "t")
     {
         this->value = true;
         this->is_set = true;
         return;
     }
 
-    if(lower_param == "false" || lower_param == "f")
+    if (lower_param == "false" || lower_param == "f")
     {
         this->value = false;
         this->is_set = true;
@@ -383,14 +410,16 @@ void BoolOption::set_value(std::string parameter)
     throw BoolValueError(parameter);
 }
 
-std::string BoolOption::get_type(){
+std::string BoolOption::get_type()
+{
     /* Returneaza un string care reprezinta tipul optinui */
     return std::string("bool");
 }
 
 /* Parser */
 
-Parser::Parser(){
+Parser::Parser()
+{
     /* Initializeaza un parser */
     this->options.clear();
     this->args.clear();
@@ -402,10 +431,10 @@ void Parser::add_option(Option* opt)
      * @param opt
      *  O instanta a unei optiuni
      */
-    for(std::vector<Option*>::iterator it = this->options.begin();
+    for (std::vector<Option*>::iterator it = this->options.begin();
         it != this->options.end(); it++)
     {
-        if((*it)->get_short_name() == opt->get_short_name() ||
+        if ((*it)->get_short_name() == opt->get_short_name() ||
             (*it)->get_long_name() == opt->get_long_name())
         {
             throw InvalidOptionException();
@@ -414,7 +443,8 @@ void Parser::add_option(Option* opt)
     this->options.push_back(opt);
 }
 
-void Parser::parse(int argc, char* argv[]){
+void Parser::parse(int argc, char* argv[])
+{
     /* Parse the arguments
      *
      * @param argc
@@ -432,14 +462,15 @@ void Parser::parse(int argc, char* argv[]){
     /* NOTE(mmicu): Pornim de la 1 ca sa excludem
      * numele binarului
      */
-    for(int i = 1; i < argc; i++){
+    for (int i = 1; i < argc; i++)
+    {
         this->args.push_back(std::string(argv[i]));
     }
 
     /* Verific daca s-a cecur help-ul */
-    for(auto it = this->args.begin(); it != this->args.end(); it++)
+    for (auto it = this->args.begin(); it != this->args.end(); it++)
     {
-        if((*it) == "-h" || (*it) == "--help" )
+        if ((*it) == "-h" || (*it) == "--help" )
         {
             this->get_help();
             exit(0);
@@ -447,21 +478,22 @@ void Parser::parse(int argc, char* argv[]){
     }
 
     /* Daca nu avem nici un argument, afisam help-ul */
-    if(this->args.size() == 0){
-
+    if (this->args.size() == 0)
+    {
         /* Daca afisam mesajul de ajutor, nu mai parsam restul argumentelor.
          * Terminam totuși executia programului. */
         this->get_help();
         exit(0);
     }
 
-    for(std::vector<Option*>::iterator it = this->options.begin();
+    for (std::vector<Option*>::iterator it = this->options.begin();
         it != this->options.end(); it++)
     {
         this->args = (*it)->parse(this->args);
     }
 
-    if(this->args.size() > 0 ){
+    if (this->args.size() > 0 )
+    {
         throw ArgumentsLeft();
     }
 }
@@ -474,13 +506,13 @@ Option* Parser::operator [](std::string name)
      *  Numele optiuni, scurt sau lung
      */
 
-    for(std::vector<Option*>::iterator it = this->options.begin();
+    for (std::vector<Option*>::iterator it = this->options.begin();
         it != this->options.end(); it++)
     {
         char sh[2];
         sh[0] = (*it)->get_short_name();
         sh[0] = 0;
-        if( (*it)->get_long_name() == name ||
+        if ((*it)->get_long_name() == name ||
             std::string(sh) == name)
         {
             return *it;
@@ -490,24 +522,29 @@ Option* Parser::operator [](std::string name)
     throw InvalidOptionException();
 }
 
-void Parser::get_help(){
+void Parser::get_help()
+{
     /* Print the help for each option */
     std::cout << "Usage :" << std::endl << "  " << this->exe_name << std::endl;
 
 
     /* Argumente obligatorii */
-    for(std::vector<Option*>::iterator it = this->options.begin();
+    for (std::vector<Option*>::iterator it = this->options.begin();
         it != this->options.end(); it++)
     {
-        if((*it)->is_required())
+        if ((*it)->is_required())
+        {
             std::cout << (*it)->get_help() << std::endl;
+        }
     }
     
     std::cout<< "Options :" << std::endl;
-    for(std::vector<Option*>::iterator it = this->options.begin();
+    for (std::vector<Option*>::iterator it = this->options.begin();
         it != this->options.end(); it++)
     {
-        if(!(*it)->is_required())
+        if ((*it)->is_required() == false)
+        {
             std::cout << (*it)->get_help() << std::endl;
+        }
     }
 }

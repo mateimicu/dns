@@ -1,3 +1,8 @@
+/* Copyright (C) Released under the
+ * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+ * Author: Micu Matei-Marius
+ */
+
 #include <string.h>
 
 #include <bitset>
@@ -17,10 +22,11 @@ Question::Question()
 
 void Question::set_name(char *name, unsigned short length)
 {
-    /* Seteaza un nume pentru unsigned shortrebare 
-     * 
+    /* Seteaza un nume pentru unsigned shortrebare
+     *
      * @param[in] *name
      *  Numele intrebari
+     *
      * @param[in] lenght
      *  Lungimea stringului
      * */
@@ -33,7 +39,7 @@ void Question::set_name(char *name, unsigned short length)
 
 void Question::set_type(char type[2])
 {
-    /* Seteaza tipul unei intrebari 
+    /* Seteaza tipul unei intrebari
      *
      * @param[in] type[2]
      *  Tipul intrebari.
@@ -44,7 +50,7 @@ void Question::set_type(char type[2])
 
 void Question::set_class(char cls[2])
 {
-    /* Seteaza clasa unei intrebari 
+    /* Seteaza clasa unei intrebari
      *
      * @param[in] cls[2]
      *  Clasa intrebari.
@@ -56,14 +62,14 @@ void Question::set_class(char cls[2])
 void Question::get_name(char **name, unsigned short& length)
 {
     /* Returneaza numele unsigned shortrebari
-     * 
+     *
      * @param[out] *name
-     *  Numele intrebari 
+     *  Numele intrebari
+     *
      * @param[out] lenght
      *  Lungimea stringului
      * */
-
-     if(this->qname_len == 0)
+     if (this->qname_len == 0)
      {
          *name = NULL;
          length = this->qname_len;
@@ -114,9 +120,10 @@ Resource::Resource()
 void Resource::set_name(char *name, unsigned short length)
 {
     /* Seteaza un nume pentru o resursa
-     * 
+     *
      * @param[in] *name
      *  Numele resursei
+     *
      * @param[in] lenght
      *  Lungimea stringului
      * */
@@ -157,7 +164,7 @@ void Resource::set_data(char* data, unsigned short length_data)
      *
      * @param[in] length_data
      *  Lungimea informatiei
-     * */
+     */
     this->rdata = new char[length_data];
     strncpy(this->rdata, data, length_data);
     strncpy(this->rdlength, (char*)&length_data, 2);
@@ -166,13 +173,15 @@ void Resource::set_data(char* data, unsigned short length_data)
 void Resource::get_name(char **name, unsigned short& length)
 {
     /* Returneaza numele Resursei
-     * 
+     *
      * @param[out] *name
      *  Numele Resursei
+     *
      * @param[out] lenght
      *  Lungimea stringului
-     * */
-    if(this->name_len == 0){
+     */
+    if (this->name_len == 0)
+    {
         *name = NULL;
         length = this->name_len;
     }
@@ -215,9 +224,10 @@ void Resource::get_data(char** data, unsigned short& length_data)
      *
      * @param[out] length_data
      *  Lungimea informatiei
-     * */
+     */
     length_data = this->rdlength[0] << 8 | this->rdlength[1];
-    if(length_data == 0){
+    if (length_data == 0)
+    {
         *data = NULL;
     }
     else
@@ -253,11 +263,11 @@ unsigned short Tranzaction::_get_short_from_char(char ch[2])
      */
     unsigned short out = 0;
     out = (short)(
-           ((unsigned char)ch[0])  | 
+           ((unsigned char)ch[0]) |
            ((unsigned char)ch[1]) << 8
           );
     return out;
-} 
+}
 
 void Tranzaction::set_id(char id[2])
 {
@@ -265,7 +275,7 @@ void Tranzaction::set_id(char id[2])
      *
      * @param[in] id
      *  Id-ul tranzactiei
-     * */
+     */
     strncpy(this->id, id, 2);
 }
 
@@ -273,7 +283,7 @@ void Tranzaction::set_flags(char flags[2])
 {
     /* Seteaza flagurile unei tranzactii
      *
-     * @param[in] flags 
+     * @param[in] flags
      *  Flagurile tranzactiei
      * */
     strncpy(this->flags, flags, 2);
@@ -281,7 +291,7 @@ void Tranzaction::set_flags(char flags[2])
 
 void Tranzaction::add_question(Question qt)
 {
-    /* Adauga un query (intrebare) tranzactiei 
+    /* Adauga un query (intrebare) tranzactiei
      *
      * @param qt
      *  Intrebarea, o instanta a clasei `Question`
@@ -314,7 +324,7 @@ void Tranzaction::add_answer(Resource ans)
 
 void Tranzaction::add_authority(Resource aut)
 {
-    /* Adauga o autoritate tranzactiei 
+    /* Adauga o autoritate tranzactiei
      *
      * @param aut
      *  Autoritatea, o instanta a clasei `Resource`
@@ -329,7 +339,7 @@ void Tranzaction::add_authority(Resource aut)
 
 void Tranzaction::add_additiona_section(Resource res)
 {
-    /* Adauga resurse aditionale 
+    /* Adauga resurse aditionale
      *
      * @param res
      *  Resursa , o instanta a clasei `Resource`
@@ -364,7 +374,7 @@ void Tranzaction::get_flags(char flags[2])
 
 void Tranzaction::get_qcount_char(char r_qcount[2])
 {
-    /* Returneza numarul de query(intrebari) 
+    /* Returneza numarul de query(intrebari)
      * sub forma unui char[2]
      *
      * @param r_qcount

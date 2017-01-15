@@ -3,7 +3,6 @@ language: cpp
 compiler: g++
 sudo: required
 script: 
-    - bash travis/vera.sh
     - bash travis/make_test.sh
 
 before_install:
