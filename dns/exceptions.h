@@ -137,4 +137,14 @@ class ServerReadError: public ServerException
 {
    const char * what () const throw ();
 };
+
+class ReaderError: public BaseException
+{
+   const char * what () const throw ();
+};
+
+class ReaderValueError: public ReaderError
+{
+   const char * what () const throw ();
+};
 #endif /* ifndef EXCEPTIONS_H */

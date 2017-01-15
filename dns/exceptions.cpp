@@ -161,3 +161,13 @@ const char * ServerReadError::what() const throw()
 {
     return "Eroare la citire !";
 }
+
+const char * ReaderError::what() const throw()
+{
+    return "Eroare in Reader";
+}
+
+const char * ReaderValueError::what() const throw()
+{
+    return "Valoare gresita pasata unei metode din Reader";
+}
