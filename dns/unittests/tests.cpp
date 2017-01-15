@@ -1,3 +1,8 @@
+/* Copyright (C) Released under the
+ * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+ * Author: Micu Matei-Marius
+ */
+
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 
 #include <string.h>
@@ -11,7 +16,7 @@
 
 TEST_CASE("DNS-Question", "[DNS-Question]")
 {
-    Question q; 
+    Question q;
     unsigned short len = 2;
     int cmp = -100;
 
@@ -49,7 +54,8 @@ TEST_CASE("DNS-Question", "[DNS-Question]")
     SECTION("Test setter - name")
     {
 
-        for(unsigned short i = 1; i <= 10; i++){
+        for (unsigned short i = 1; i <= 10; i++)
+        {
             unsigned short aux_len = 0;
             char name_set[i];
             char* name_get = NULL;
@@ -97,7 +103,7 @@ TEST_CASE("DNS-Question", "[DNS-Question]")
 
 TEST_CASE("DNS-Resource", "[DNS-Resource]")
 {
-    Resource res; 
+    Resource res;
     unsigned short len = 2;
     int cmp = -100;
 
@@ -145,7 +151,8 @@ TEST_CASE("DNS-Resource", "[DNS-Resource]")
     SECTION("Test setter - name")
     {
 
-        for(unsigned short i = 1; i <= 10; i++){
+        for (unsigned short i = 1; i <= 10; i++)
+        {
             unsigned short aux_len = 0;
             char name_set[i];
             char* name_get = NULL;
@@ -193,7 +200,8 @@ TEST_CASE("DNS-Resource", "[DNS-Resource]")
 
     {
 
-        for(unsigned short i = 1; i <= 10; i++){
+        for (unsigned short i = 1; i <= 10; i++)
+        {
             unsigned short aux_len = 0;
             char data_set[i];
             char* data_get = NULL;
@@ -297,8 +305,8 @@ TEST_CASE("DNS-Tranzaction", "[DNS-Tranzaction]")
     {
         char id_set[2],
              id_get[2];
-        
-        for(char i ='a'; i <= 'c'; i++)
+
+        for (char i ='a'; i <= 'c'; i++)
         {
             id_set[0] = i;
             id_set[1] = i+1;
@@ -315,8 +323,8 @@ TEST_CASE("DNS-Tranzaction", "[DNS-Tranzaction]")
     {
         char flags_set[2],
              flags_get[2];
-        
-        for(char i ='a'; i <= 'c'; i++)
+
+        for (char i ='a'; i <= 'c'; i++)
         {
             flags_set[0] = i;
             flags_set[1] = i+1;

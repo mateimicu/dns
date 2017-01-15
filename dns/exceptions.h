@@ -1,3 +1,8 @@
+/* Copyright (C) Released under the
+ * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+ * Author: Micu Matei-Marius
+ */
+
 #ifndef EXCEPTIONS_H
 #define EXCEPTIONS_H value
 #include <exception>
@@ -20,7 +25,7 @@ class ParserException: public BaseException
 };
 
 
-class OptionException: public ParserException 
+class OptionException: public ParserException
 {
     /* Exceptie de baza pentru Parserul proiectului */
     const char * what () throw ();
@@ -32,7 +37,7 @@ class OptionException: public ParserException
 
 
 /* Int Eceptions */
-class IntException: public OptionException 
+class IntException: public OptionException
 {
     /* Exceptie de baza pentru IntOption */
    const char * what () throw ();
@@ -49,7 +54,7 @@ class IntValueError: public IntException
 };
 
 /* Str Eceptions */
-class StrException: public OptionException 
+class StrException: public OptionException
 {
     /* Exceptie de baza pentru StrOption */
    const char * what () throw ();
@@ -58,7 +63,7 @@ class StrException: public OptionException
 };
 
 
-class StrValueError: public StrException 
+class StrValueError: public StrException
 {
     /* Valoarea primita pentru aceasta optiune nu este corecta */
    const char * what () throw ();
@@ -67,7 +72,7 @@ class StrValueError: public StrException
 };
 
 /* Bool Eceptions */
-class BoolException: public OptionException 
+class BoolException: public OptionException
 {
     /* Exceptie de baza pentru BoolOption */
     const char * what () throw ();
@@ -83,12 +88,12 @@ class BoolValueError: public BoolException
         BoolValueError(std::string& primit);
 };
 
-class InvalidOptionException: public ParserException 
+class InvalidOptionException: public ParserException
 {
    const char * what () const throw ();
 };
 
-class ArgumentsLeft: public ParserException 
+class ArgumentsLeft: public ParserException
 {
    const char * what () const throw ();
 };
@@ -98,37 +103,37 @@ class NotTheRightType: public ParserException
    const char * what () const throw ();
 };
 
-class ServerException: public BaseException 
+class ServerException: public BaseException
 {
    const char * what () const throw ();
 };
 
-class SocketException: public ServerException 
+class SocketException: public ServerException
 {
    const char * what () const throw ();
 };
 
-class BindException: public ServerException 
+class BindException: public ServerException
 {
    const char * what () const throw ();
 };
 
-class ListenException: public ServerException 
+class ListenException: public ServerException
 {
    const char * what () const throw ();
 };
 
-class NotOpenException: public ServerException 
+class NotOpenException: public ServerException
 {
    const char * what () const throw ();
 };
 
-class ServerNotOpen: public ServerException 
+class ServerNotOpen: public ServerException
 {
    const char * what () const throw ();
 };
 
-class ServerReadError: public ServerException 
+class ServerReadError: public ServerException
 {
    const char * what () const throw ();
 };

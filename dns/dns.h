@@ -1,3 +1,8 @@
+/* Copyright (C) Released under the
+ * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+ * Author: Micu Matei-Marius
+ */
+
 #ifndef DNS_H
 #define DNS_H value
 #include <vector>
@@ -30,7 +35,7 @@ class Resource
 {
     /* Resouce class
      *
-     * Raspunsurile, autoritatile si resursele aditionale au acelasi 
+     * Raspunsurile, autoritatile si resursele aditionale au acelasi
      * format:
      *  - nume
      *  - tip
@@ -58,7 +63,7 @@ class Resource
 class Tranzaction
 {
     /* O clasa pentru fiecare tranzactie.
-     * 
+     *
      * O tranzatie are:
      * - id
      * - flags
