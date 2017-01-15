@@ -147,10 +147,10 @@ Variables</h2></td></tr>
 
     <span class="keyword">struct </span>sockaddr client;
 
-    s.read(ch, 100, 0,(<span class="keyword">struct</span> sockaddr*) &amp;client, &amp;len_client);
+    s.read(ch, 100, 0, (<span class="keyword">struct</span> sockaddr*) &amp;client, &amp;len_client);
     cout &lt;&lt; <span class="stringliteral">&quot;AM citit :&quot;</span> &lt;&lt;  ch &lt;&lt; endl;
 
-    s.send(sd, 2, 0,(<span class="keyword">struct</span> sockaddr*) &amp;client, len_client);
+    s.send(sd, 2, 0, (<span class="keyword">struct</span> sockaddr*) &amp;client, len_client);
     cout &lt;&lt; <span class="stringliteral">&quot;AM scris 12:&quot;</span> &lt;&lt;  12 &lt;&lt; endl;
 
     s.stop();
@@ -172,7 +172,7 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<div class="fragment"><pre class="fragment">                       {
+<div class="fragment"><pre class="fragment">{
     <span class="comment">/* Pregateste parserul cu toate valorile */</span>
     Parser parser;
     StrOption* verbosity = <span class="keyword">new</span> StrOption(<span class="charliteral">&#39;v&#39;</span>, <span class="stringliteral">&quot;verbose&quot;</span>, <span class="stringliteral">&quot;Verbosity level(v, vv, vvv).&quot;</span>, <span class="keyword">false</span>);
@@ -184,13 +184,19 @@ Variables</h2></td></tr>
     IntOption* port = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;p&#39;</span>, <span class="stringliteral">&quot;port&quot;</span>, <span class="stringliteral">&quot;The port(defualt 53).&quot;</span>, <span class="keyword">false</span>);
     port-&gt;set_default(53);
 
-    IntOption* min_threads = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;t&#39;</span>, <span class="stringliteral">&quot;min_threads&quot;</span>, <span class="stringliteral">&quot;The min. number of threads, or the base threads (default 2).&quot;</span>, <span class="keyword">false</span>);
+    IntOption* min_threads = <span class="keyword">new</span> IntOption(
+        <span class="charliteral">&#39;t&#39;</span>, <span class="stringliteral">&quot;min_threads&quot;</span>, <span class="stringliteral">&quot;The min. number of threads, or the base threads (default 2).&quot;</span>, <span class="keyword">false</span>);
     min_threads-&gt;set_default(2);
 
-    IntOption* backlog = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;b&#39;</span>, <span class="stringliteral">&quot;backlog&quot;</span>, <span class="stringliteral">&quot;The size of the listen queue ( defaut 10).&quot;</span>, <span class="keyword">false</span>);
-
-    IntOption* max_threads = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;m&#39;</span>, <span class="stringliteral">&quot;max_threads&quot;</span>, <span class="stringliteral">&quot;The max. number of threads (default 12).&quot;</span>, <span class="keyword">false</span>);
+    IntOption* backlog = <span class="keyword">new</span> IntOption(
+        <span class="charliteral">&#39;b&#39;</span>, <span class="stringliteral">&quot;backlog&quot;</span>, <span class="stringliteral">&quot;The size of the listen queue ( defaut 10).&quot;</span>, <span class="keyword">false</span>);
     backlog-&gt;set_default(10);
+
+    IntOption* max_threads = <span class="keyword">new</span> IntOption(
+        <span class="charliteral">&#39;m&#39;</span>, <span class="stringliteral">&quot;max_threads&quot;</span>, <span class="stringliteral">&quot;The max. number of threads (default 12).&quot;</span>, <span class="keyword">false</span>);
+    max_threads-&gt;set_default(12);
+
+    max_threads-&gt;set_default(12);
 
     StrOption* config_file_path = <span class="keyword">new</span> StrOption(<span class="charliteral">&#39;c&#39;</span>, <span class="stringliteral">&quot;config&quot;</span>, <span class="stringliteral">&quot;Config file path.&quot;</span>, <span class="keyword">false</span>);
     config_file_path-&gt;set_default(<span class="stringliteral">&quot;&quot;</span>);
@@ -239,7 +245,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 15 2017 12:47:03 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 15 2017 13:29:33 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
