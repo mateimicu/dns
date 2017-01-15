@@ -1,5 +1,9 @@
 #include "exceptions.h"
+
 #include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 /* Aici sunt toate exceptiile */
 
@@ -117,4 +121,38 @@ const char * ArgumentsLeft::what() const throw()
 const char * NotTheRightType::what() const throw()
 {
     return "Argumentul nu are acest tip.";
+}
+
+const char * ServerException::what() const throw()
+{
+    return "Eroare la crearea serverului !";
+}
+
+const char * SocketException::what() const throw()
+{
+    return "Eroare la crearea socketului !";
+}
+
+const char * BindException::what() const throw()
+{
+    return "Eroare la bind !";
+}
+
+const char * ListenException::what() const throw()
+{
+    return "Eroare la Listen";
+}
+const char * NotOpenException::what() const throw()
+{
+    return "S-a incercat inchiderea unui server care nu a fost deschis nici o data.";
+}
+
+const char * ServerNotOpen::what() const throw()
+{
+    return "Servarul nu este deschis !";
+}
+
+const char * ServerReadError::what() const throw()
+{
+    return "Eroare la citire !";
 }
