@@ -1,4 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$d7/d52/dns_8cpp.html" title="dns/dns.cpp" alt="" coords="5,83,99,112"/>
-<area shape="rect" id="node5" href="$d9/d1e/tests_8cpp.html" title="dns/unittests/tests.cpp" alt="" coords="123,83,277,112"/>
+<area shape="rect" id="node5" href="$d6/dda/reader_8h.html" title="dns/reader.h" alt="" coords="123,83,216,112"/>
+<area shape="rect" id="node7" href="$d7/dff/reader_8cpp.html" title="dns/reader.cpp" alt="" coords="157,160,264,189"/>
+<area shape="rect" id="node10" href="$d9/d1e/tests_8cpp.html" title="dns/unittests/tests.cpp" alt="" coords="291,83,445,112"/>
 </map>

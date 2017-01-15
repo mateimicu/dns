@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>DNS: dns/parser.h File Reference</title>
+<title>DNS: dns/reader.h Source File</title>
 
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
@@ -75,28 +75,38 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title">dns/parser.h File Reference</div>  </div>
+<div class="title">dns/reader.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br/>
-<code>#include &lt;vector&gt;</code><br/>
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for parser.h:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d7/de2/parser_8h__incl.png" border="0" usemap="#dns_2parser_8h" alt=""/></div>
-<map name="dns_2parser_8h" id="dns_2parser_8h">
-</map>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d0e/parser_8h__dep__incl.png" border="0" usemap="#dns_2parser_8hdep" alt=""/></div>
-<map name="dns_2parser_8hdep" id="dns_2parser_8hdep">
-<area shape="rect" id="node3" href="../../df/d0a/main_8cpp.html" title="dns/main.cpp" alt="" coords="5,83,104,112"/><area shape="rect" id="node5" href="../../dc/ddd/parser_8cpp.html" title="dns/parser.cpp" alt="" coords="128,83,235,112"/><area shape="rect" id="node7" href="../../d9/d1e/tests_8cpp.html" title="dns/unittests/tests.cpp" alt="" coords="259,83,413,112"/></map>
-</div>
-</div>
-<p><a href="../../d5/d36/parser_8h_source.html">Go to the source code of this file.</a></p>
-</div><!-- contents -->
+<a href="../../d6/dda/reader_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* Copyright (C) Released under the</span>
+<a name="l00002"></a>00002 <span class="comment"> * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007</span>
+<a name="l00003"></a>00003 <span class="comment"> * Author: Micu Matei-Marius</span>
+<a name="l00004"></a>00004 <span class="comment"> */</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;<a class="code" href="../../d8/dc3/server_8h.html">server.h</a>&quot;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;<a class="code" href="../../d5/d2e/dns_8h.html">dns.h</a>&quot;</span>
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 <span class="preprocessor">#ifndef READER_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#define READER_H_ value</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="keyword">class </span>Reader
+<a name="l00012"></a>00012 {
+<a name="l00013"></a>00013     <span class="comment">/* Reader class</span>
+<a name="l00014"></a>00014 <span class="comment">     *</span>
+<a name="l00015"></a>00015 <span class="comment">     * Citeste dintr-un server informatia si returneaza</span>
+<a name="l00016"></a>00016 <span class="comment">     * un obiect de tip tranzactie</span>
+<a name="l00017"></a>00017 <span class="comment">     */</span>
+<a name="l00018"></a>00018     <span class="keyword">private</span>:
+<a name="l00019"></a>00019         Server* server;
+<a name="l00020"></a>00020         <span class="keywordtype">char</span>* buff;
+<a name="l00021"></a>00021         <span class="keyword">static</span> <span class="keywordtype">int</span> BUFF_SIZE;
+<a name="l00022"></a>00022     <span class="keyword">public</span>:
+<a name="l00023"></a>00023         Reader();
+<a name="l00024"></a>00024         <span class="keywordtype">void</span> set_server(Server* s);
+<a name="l00025"></a>00025         Tranzaction* read();
+<a name="l00026"></a>00026         ~Reader();
+<a name="l00027"></a>00027 };
+<a name="l00028"></a>00028 <span class="preprocessor">#endif </span><span class="comment">/* ifndef READER_H_ */</span>
+</pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
