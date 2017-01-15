@@ -75,7 +75,8 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">dns/main.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -83,18 +84,22 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
 <code>#include &quot;<a class="el" href="../../d5/d36/parser_8h_source.html">parser.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../d4/d03/exceptions_8h_source.html">exceptions.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../d8/dc3/server_8h_source.html">server.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/dce/main_8cpp__incl.png" border="0" usemap="#dns_2main_8cpp" alt=""/></div>
 <map name="dns_2main_8cpp" id="dns_2main_8cpp">
-<area shape="rect" id="node5" href="../../d5/d36/parser_8h.html" title="parser.h" alt="" coords="101,83,171,112"/><area shape="rect" id="node11" href="../../d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="195,83,291,112"/></map>
+<area shape="rect" id="node5" href="../../d5/d36/parser_8h.html" title="parser.h" alt="" coords="101,83,171,112"/><area shape="rect" id="node11" href="../../d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="181,160,277,189"/><area shape="rect" id="node16" href="../../d8/dc3/server_8h.html" title="server.h" alt="" coords="371,83,440,112"/></map>
 </div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Parser&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a7f134caea49894cfd2916c0b30877ec6">prepare_parser</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr><td colspan="2"><h2><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Server *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#ac3f86072070eecf66dddc29514d8931b">MAIN_SERVER</a> = NULL</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a><!-- doxytag: member="main.cpp::main" ref="a0ddf1224851353fc92bfbff6f499fa97" args="(int argc, char *argv[])" -->
@@ -123,7 +128,32 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <div class="fragment"><pre class="fragment">{
     Parser p = <a class="code" href="../../df/d0a/main_8cpp.html#a7f134caea49894cfd2916c0b30877ec6">prepare_parser</a>();
+    std::cout &lt;&lt; <span class="stringliteral">&quot;Start0 &quot;</span> &lt;&lt; std::endl;
     p.parse(argc, argv);
+    std::cout &lt;&lt; <span class="stringliteral">&quot;Start1 &quot;</span> &lt;&lt; std::endl;
+
+    Server s(p[<span class="stringliteral">&quot;port&quot;</span>]-&gt;get_int(), p[<span class="stringliteral">&quot;backlog&quot;</span>]-&gt;get_int());
+    std::cout &lt;&lt; <span class="stringliteral">&quot;Start2 &quot;</span> &lt;&lt; std::endl;
+    <a class="code" href="../../df/d0a/main_8cpp.html#ac3f86072070eecf66dddc29514d8931b">MAIN_SERVER</a> = &amp;s;
+    std::cout &lt;&lt; <span class="stringliteral">&quot;Start3 &quot;</span> &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; <span class="stringliteral">&quot;Start &quot;</span> &lt;&lt; std::endl;
+    s.start();
+
+    <span class="keywordtype">char</span> ch[100], sd[2];
+    sd[0] = <span class="charliteral">&#39;a&#39;</span>;
+    sd[1] = <span class="charliteral">&#39;a&#39;</span>;
+    socklen_t len_client;
+
+    <span class="keyword">struct </span>sockaddr client;
+
+    s.read(ch, 100, 0,(<span class="keyword">struct</span> sockaddr*) &amp;client, &amp;len_client);
+    cout &lt;&lt; <span class="stringliteral">&quot;AM citit :&quot;</span> &lt;&lt;  ch &lt;&lt; endl;
+
+    s.send(sd, 2, 0,(<span class="keyword">struct</span> sockaddr*) &amp;client, len_client);
+    cout &lt;&lt; <span class="stringliteral">&quot;AM scris 12:&quot;</span> &lt;&lt;  12 &lt;&lt; endl;
+
+    s.stop();
     <span class="keywordflow">return</span> 0;
 }
 </pre></div>
@@ -157,8 +187,10 @@ Functions</h2></td></tr>
     IntOption* min_threads = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;t&#39;</span>, <span class="stringliteral">&quot;min_threads&quot;</span>, <span class="stringliteral">&quot;The min. number of threads, or the base threads (default 2).&quot;</span>, <span class="keyword">false</span>);
     min_threads-&gt;set_default(2);
 
+    IntOption* backlog = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;b&#39;</span>, <span class="stringliteral">&quot;backlog&quot;</span>, <span class="stringliteral">&quot;The size of the listen queue ( defaut 10).&quot;</span>, <span class="keyword">false</span>);
+
     IntOption* max_threads = <span class="keyword">new</span> IntOption(<span class="charliteral">&#39;m&#39;</span>, <span class="stringliteral">&quot;max_threads&quot;</span>, <span class="stringliteral">&quot;The max. number of threads (default 12).&quot;</span>, <span class="keyword">false</span>);
-    min_threads-&gt;set_default(12);
+    backlog-&gt;set_default(10);
 
     StrOption* config_file_path = <span class="keyword">new</span> StrOption(<span class="charliteral">&#39;c&#39;</span>, <span class="stringliteral">&quot;config&quot;</span>, <span class="stringliteral">&quot;Config file path.&quot;</span>, <span class="keyword">false</span>);
     config_file_path-&gt;set_default(<span class="stringliteral">&quot;&quot;</span>);
@@ -169,9 +201,24 @@ Functions</h2></td></tr>
     parser.add_option(min_threads);
     parser.add_option(max_threads);
     parser.add_option(config_file_path);
+    parser.add_option(backlog);
     <span class="keywordflow">return</span> parser;
 }
 </pre></div>
+</div>
+</div>
+<hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="ac3f86072070eecf66dddc29514d8931b"></a><!-- doxytag: member="main.cpp::MAIN_SERVER" ref="ac3f86072070eecf66dddc29514d8931b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Server* <a class="el" href="../../df/d0a/main_8cpp.html#ac3f86072070eecf66dddc29514d8931b">MAIN_SERVER</a> = NULL</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
 </div>
 </div>
 </div><!-- contents -->
@@ -192,7 +239,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 5 2017 13:29:14 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 15 2017 12:31:22 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
