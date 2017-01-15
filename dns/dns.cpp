@@ -4,10 +4,26 @@
  */
 
 #include <string.h>
+#include <iostream>
+#include <arpa/inet.h>
 
 #include <bitset>
 #include <iostream>
 #include "dns.h"
+
+void print_hex(char *ch, int len, bool endl)
+{
+    /* Afiseaxa caracter cu caracter in hexa */
+    for (int i = 0; i < len; ++i)
+    {
+        std::cout << std::hex << (int)ch[i] << " ";
+    }
+
+    if (endl == true)
+    {
+        std::cout << std::endl;
+    }
+}
 
 Question::Question()
 {
@@ -105,6 +121,21 @@ void Question::get_class(char cls[2])
      strncpy(cls, this->qclass, 2);
 }
 
+void Question::print_info()
+{
+    /* Printeaza informatii despre o intrebare */
+    std::cout <<"  Name :";
+    print_hex(this->qname, this->qname_len, true);
+    std::cout <<"  Lungime :" << this->qname_len << std::endl;
+
+    std::cout <<" Type: ";
+    print_hex(this->qtype, 2, true);
+
+    std::cout <<" Class: ";
+    print_hex(this->qclass, 2, true);
+    std::cout << std::endl;
+}
+
 Resource::Resource()
 {
     /* Initializarea unei resurse */
@@ -153,6 +184,17 @@ void Resource::set_class(char cls[2])
      */
 
      strncpy(this->cls, cls, 2);
+}
+
+void Resource::set_ttl(char ttl[2])
+{
+    /* Seteaza time to live unei resurse
+     *
+     * @param[in] ttl[2]
+     *  time to live pentru  resurseri.
+     */
+
+     strncpy(this->ttl, ttl, 2);
 }
 
 void Resource::set_data(char* data, unsigned short length_data)
@@ -215,6 +257,17 @@ void Resource::get_class(char cls[2])
      strncpy(cls, this->cls, 2);
 }
 
+void Resource::get_ttl(char ttl[2])
+{
+     /* Returneaza time tp live pentru o resurse
+     *
+     * @param[out] ttl[2]
+     *  Time to live.
+     */
+
+     strncpy(ttl, this->ttl, 2);
+}
+
 void Resource::get_data(char** data, unsigned short& length_data)
 {
     /* Setarea unor informatii despre resursa
@@ -235,6 +288,31 @@ void Resource::get_data(char** data, unsigned short& length_data)
         *data = new char[length_data];
         strncpy(*data, this->rdata, length_data);
     }
+}
+
+void Resource::print_info()
+{
+    /* Printeaza informatii despre resurs */
+    std::cout << "  Name :";
+    print_hex(this->name, this->name_len, true);
+    std::cout <<" Len. Name: " << this->name_len << std::endl;
+
+    std::cout << "  Type:";
+    print_hex(this->type, 2, true);
+
+    std::cout << "  Class:";
+    print_hex(this->cls, 2, true);
+
+    std::cout << "  TTL:";
+    print_hex(this->ttl, 2, true);
+
+    std::cout << " Data:";
+    unsigned short len;
+    memcpy(&len, this->rdlength, 2);
+    len = ntohs(len);
+    print_hex(this->rdata, len, true);
+
+    std::cout << "  Len. Data:" << len << std::endl << std::endl;
 }
 
 Tranzaction::Tranzaction()
@@ -477,4 +555,50 @@ std::vector<Resource> Tranzaction::get_additional_sections()
 {
     /* Returneaza o lista cu toate resursele aditionale */
     return this->additional_sections;
+}
+
+void Tranzaction::print_info()
+{
+    /* Printeaza infomatii despre tranzactie */
+    std::cout << " ------------------ " << std::endl;
+    std::cout << "Tranzactie id :";
+    print_hex(this->id, 2, true);
+
+    std::cout << "Flags :";
+    print_hex(this->flags, 2, true);
+
+    std::cout << "Qcount :" << this->get_qcount_short() << std::endl;
+    std::cout << "Ancount:" << this->get_ancount_short() << std::endl;
+    std::cout << "Nscount:" << this->get_nscount_short() << std::endl;
+    std::cout << "Arcount :" << this->get_arcount_short() << std::endl;
+
+    std::cout << "Questions :" << std::endl;
+    for (std::vector<Question>::iterator it = this->questions.begin();
+         it != this->questions.end(); ++it)
+    {
+        (*it).print_info();
+    }
+
+    std::cout << "Answers:" << std::endl;
+    for (std::vector<Resource>::iterator it = this->answers.begin();
+         it != this->answers.end(); ++it)
+    {
+        (*it).print_info();
+    }
+
+    std::cout << "Authority:" << std::endl;
+    for (std::vector<Resource>::iterator it = this->authority.begin();
+         it != this->authority.end(); ++it)
+    {
+        (*it).print_info();
+    }
+
+    std::cout << "Additional sections:" << std::endl;
+    for (std::vector<Resource>::iterator it = this->additional_sections.begin();
+         it != this->additional_sections.end(); ++it)
+    {
+        (*it).print_info();
+    }
+
+    std::cout << " ------------------ " << std::endl << std::endl;
 }
