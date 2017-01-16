@@ -86,12 +86,13 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <code>#include &quot;<a class="el" href="../../d4/d03/exceptions_8h_source.html">exceptions.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../d8/dc3/server_8h_source.html">server.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../d6/dda/reader_8h_source.html">reader.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../da/d4e/db_8h_source.html">db.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/dce/main_8cpp__incl.png" border="0" usemap="#dns_2main_8cpp" alt=""/></div>
 <map name="dns_2main_8cpp" id="dns_2main_8cpp">
-<area shape="rect" id="node5" href="../../d5/d36/parser_8h.html" title="parser.h" alt="" coords="464,160,533,189"/><area shape="rect" id="node11" href="../../d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="5,237,101,267"/><area shape="rect" id="node16" href="../../d8/dc3/server_8h.html" title="server.h" alt="" coords="351,160,420,189"/><area shape="rect" id="node27" href="../../d6/dda/reader_8h.html" title="reader.h" alt="" coords="520,83,589,112"/><area shape="rect" id="node31" href="../../d5/d2e/dns_8h.html" title="dns.h" alt="" coords="608,160,661,189"/></map>
+<area shape="rect" id="node5" href="../../d5/d36/parser_8h.html" title="parser.h" alt="" coords="149,160,219,189"/><area shape="rect" id="node11" href="../../d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="619,237,715,267"/><area shape="rect" id="node16" href="../../d8/dc3/server_8h.html" title="server.h" alt="" coords="275,160,344,189"/><area shape="rect" id="node27" href="../../d6/dda/reader_8h.html" title="reader.h" alt="" coords="152,83,221,112"/><area shape="rect" id="node34" href="../../da/d4e/db_8h.html" title="db.h" alt="" coords="432,83,477,112"/><area shape="rect" id="node31" href="../../d5/d2e/dns_8h.html" title="dns.h" alt="" coords="72,160,125,189"/></map>
 </div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
@@ -186,15 +187,14 @@ Variables</h2></td></tr>
 
     max_threads-&gt;set_default(12);
 
-    StrOption* config_file_path = <span class="keyword">new</span> StrOption(<span class="charliteral">&#39;c&#39;</span>, <span class="stringliteral">&quot;config&quot;</span>, <span class="stringliteral">&quot;Config file path.&quot;</span>, <span class="keyword">false</span>);
-    config_file_path-&gt;set_default(<span class="stringliteral">&quot;&quot;</span>);
+    StrOption* db_name = <span class="keyword">new</span> StrOption(<span class="charliteral">&#39;f&#39;</span>, <span class="stringliteral">&quot;db_name&quot;</span>, <span class="stringliteral">&quot;Fisierul cu baza de date&quot;</span>, <span class="keyword">true</span>);
 
     parser.add_option(verbosity);
     parser.add_option(debug);
     parser.add_option(port);
     parser.add_option(min_threads);
     parser.add_option(max_threads);
-    parser.add_option(config_file_path);
+    parser.add_option(db_name);
     parser.add_option(backlog);
     <span class="keywordflow">return</span> parser;
 }
@@ -233,7 +233,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 16 2017 07:12:19 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 16 2017 21:17:02 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
