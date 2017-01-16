@@ -147,4 +147,29 @@ class ReaderValueError: public ReaderError
 {
    const char * what () const throw ();
 };
+
+class DBException: public BaseException
+{
+   const char * what () const throw ();
+};
+
+class DBConnectionException: public BaseException
+{
+   const char * what () const throw ();
+};
+
+class DBCreateException: public BaseException
+{
+   const char * what () const throw ();
+};
+
+class DBSelectException: public BaseException
+{
+   const char * what () const throw ();
+};
+
+class DBMalformedTable: public BaseException
+{
+   const char * what () const throw ();
+};
 #endif /* ifndef EXCEPTIONS_H */
