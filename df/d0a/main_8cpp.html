@@ -85,12 +85,13 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <code>#include &quot;<a class="el" href="../../d5/d36/parser_8h_source.html">parser.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../d4/d03/exceptions_8h_source.html">exceptions.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../d8/dc3/server_8h_source.html">server.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../d6/dda/reader_8h_source.html">reader.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/dce/main_8cpp__incl.png" border="0" usemap="#dns_2main_8cpp" alt=""/></div>
 <map name="dns_2main_8cpp" id="dns_2main_8cpp">
-<area shape="rect" id="node5" href="../../d5/d36/parser_8h.html" title="parser.h" alt="" coords="101,83,171,112"/><area shape="rect" id="node11" href="../../d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="181,160,277,189"/><area shape="rect" id="node16" href="../../d8/dc3/server_8h.html" title="server.h" alt="" coords="371,83,440,112"/></map>
+<area shape="rect" id="node5" href="../../d5/d36/parser_8h.html" title="parser.h" alt="" coords="464,160,533,189"/><area shape="rect" id="node11" href="../../d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="5,237,101,267"/><area shape="rect" id="node16" href="../../d8/dc3/server_8h.html" title="server.h" alt="" coords="351,160,420,189"/><area shape="rect" id="node27" href="../../d6/dda/reader_8h.html" title="reader.h" alt="" coords="520,83,589,112"/><area shape="rect" id="node31" href="../../d5/d2e/dns_8h.html" title="dns.h" alt="" coords="608,160,661,189"/></map>
 </div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
@@ -128,30 +129,17 @@ Variables</h2></td></tr>
 <div class="memdoc">
 <div class="fragment"><pre class="fragment">{
     Parser p = <a class="code" href="../../df/d0a/main_8cpp.html#a7f134caea49894cfd2916c0b30877ec6">prepare_parser</a>();
-    std::cout &lt;&lt; <span class="stringliteral">&quot;Start0 &quot;</span> &lt;&lt; std::endl;
     p.parse(argc, argv);
-    std::cout &lt;&lt; <span class="stringliteral">&quot;Start1 &quot;</span> &lt;&lt; std::endl;
 
     Server s(p[<span class="stringliteral">&quot;port&quot;</span>]-&gt;get_int(), p[<span class="stringliteral">&quot;backlog&quot;</span>]-&gt;get_int());
-    std::cout &lt;&lt; <span class="stringliteral">&quot;Start2 &quot;</span> &lt;&lt; std::endl;
     <a class="code" href="../../df/d0a/main_8cpp.html#ac3f86072070eecf66dddc29514d8931b">MAIN_SERVER</a> = &amp;s;
-    std::cout &lt;&lt; <span class="stringliteral">&quot;Start3 &quot;</span> &lt;&lt; std::endl;
 
     std::cout &lt;&lt; <span class="stringliteral">&quot;Start &quot;</span> &lt;&lt; std::endl;
     s.start();
 
-    <span class="keywordtype">char</span> ch[100], sd[2];
-    sd[0] = <span class="charliteral">&#39;a&#39;</span>;
-    sd[1] = <span class="charliteral">&#39;a&#39;</span>;
-    socklen_t len_client;
-
-    <span class="keyword">struct </span>sockaddr client;
-
-    s.read(ch, 100, 0, (<span class="keyword">struct</span> sockaddr*) &amp;client, &amp;len_client);
-    cout &lt;&lt; <span class="stringliteral">&quot;AM citit :&quot;</span> &lt;&lt;  ch &lt;&lt; endl;
-
-    s.send(sd, 2, 0, (<span class="keyword">struct</span> sockaddr*) &amp;client, len_client);
-    cout &lt;&lt; <span class="stringliteral">&quot;AM scris 12:&quot;</span> &lt;&lt;  12 &lt;&lt; endl;
+    Reader* r = <span class="keyword">new</span> Reader();
+    r-&gt;set_server(&amp;s);
+    r-&gt;read();
 
     s.stop();
     <span class="keywordflow">return</span> 0;
@@ -245,7 +233,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 15 2017 21:51:04 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 16 2017 06:50:42 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

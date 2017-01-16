@@ -1,5 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node5" href="$d5/d36/parser_8h.html" title="parser.h" alt="" coords="101,83,171,112"/>
-<area shape="rect" id="node11" href="$d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="181,160,277,189"/>
-<area shape="rect" id="node16" href="$d8/dc3/server_8h.html" title="server.h" alt="" coords="371,83,440,112"/>
+<area shape="rect" id="node5" href="$d5/d36/parser_8h.html" title="parser.h" alt="" coords="464,160,533,189"/>
+<area shape="rect" id="node11" href="$d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="5,237,101,267"/>
+<area shape="rect" id="node16" href="$d8/dc3/server_8h.html" title="server.h" alt="" coords="351,160,420,189"/>
+<area shape="rect" id="node27" href="$d6/dda/reader_8h.html" title="reader.h" alt="" coords="520,83,589,112"/>
+<area shape="rect" id="node31" href="$d5/d2e/dns_8h.html" title="dns.h" alt="" coords="608,160,661,189"/>
 </map>
