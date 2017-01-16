@@ -171,3 +171,28 @@ const char * ReaderValueError::what() const throw()
 {
     return "Valoare gresita pasata unei metode din Reader";
 }
+
+const char * DBException::what() const throw()
+{
+    return "Eroare la baza de date.";
+}
+
+const char * DBConnectionException::what() const throw()
+{
+    return "Eroare la conectarea cu baza de date.";
+}
+
+const char * DBCreateException::what() const throw()
+{
+    return "Eroare la crearea bazei de date.";
+}
+
+const char * DBSelectException::what() const throw()
+{
+    return "Eroare la intoregarea bazei de date.";
+}
+
+const char * DBMalformedTable::what() const throw()
+{
+    return "Tabela este malformata!";
+}

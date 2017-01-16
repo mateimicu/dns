@@ -8,6 +8,7 @@
 #include "exceptions.h"
 #include "server.h"
 #include "reader.h"
+#include "db.h"
 
 using namespace std;
 
@@ -41,15 +42,14 @@ Parser prepare_parser()
 
     max_threads->set_default(12);
 
-    StrOption* config_file_path = new StrOption('c', "config", "Config file path.", false);
-    config_file_path->set_default("");
+    StrOption* db_name = new StrOption('f', "db_name", "Fisierul cu baza de date", true);
 
     parser.add_option(verbosity);
     parser.add_option(debug);
     parser.add_option(port);
     parser.add_option(min_threads);
     parser.add_option(max_threads);
-    parser.add_option(config_file_path);
+    parser.add_option(db_name);
     parser.add_option(backlog);
     return parser;
 }
