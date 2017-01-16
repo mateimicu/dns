@@ -50,7 +50,7 @@ void Question::set_name(char *name, unsigned short length)
      this->qname_len = length;
 
      this->qname = new char[length];
-     strncpy(this->qname, name, length);
+     memcpy(this->qname, name, length);
 }
 
 void Question::set_type(char type[2])
@@ -60,8 +60,7 @@ void Question::set_type(char type[2])
      * @param[in] type[2]
      *  Tipul intrebari.
      */
-
-     strncpy(this->qtype, type, 2);
+     memcpy(this->qtype, type, 2);
 }
 
 void Question::set_class(char cls[2])
@@ -72,7 +71,7 @@ void Question::set_class(char cls[2])
      *  Clasa intrebari.
      */
 
-     strncpy(this->qclass, cls, 2);
+     memcpy(this->qclass, cls, 2);
 }
 
 void Question::get_name(char **name, unsigned short& length)
@@ -93,7 +92,7 @@ void Question::get_name(char **name, unsigned short& length)
      else
      {
         char *rname = new char[this->qname_len];
-        strncpy(rname, this->qname, this->qname_len);
+        memcpy(rname, this->qname, this->qname_len);
         *name = rname;
         length = this->qname_len;
      }
@@ -107,7 +106,7 @@ void Question::get_type(char type[2])
      *  Tipul unsigned shortrebari.
      */
 
-     strncpy(type, this->qtype, 2);
+     memcpy(type, this->qtype, 2);
 }
 
 void Question::get_class(char cls[2])
@@ -118,7 +117,7 @@ void Question::get_class(char cls[2])
      *  Clasa unsigned shortrebari.
      */
 
-     strncpy(cls, this->qclass, 2);
+     memcpy(cls, this->qclass, 2);
 }
 
 void Question::print_info()
@@ -126,7 +125,7 @@ void Question::print_info()
     /* Printeaza informatii despre o intrebare */
     std::cout <<"  Name :";
     print_hex(this->qname, this->qname_len, true);
-    std::cout <<"  Lungime :" << this->qname_len << std::endl;
+    std::cout <<"  Lungime :" << (int)this->qname_len << std::endl;
 
     std::cout <<" Type: ";
     print_hex(this->qtype, 2, true);
@@ -161,7 +160,7 @@ void Resource::set_name(char *name, unsigned short length)
      this->name_len = length;
 
      this->name = new char[length];
-     strncpy(this->name, name, length);
+     memcpy(this->name, name, length);
 }
 
 void Resource::set_type(char type[2])
@@ -172,7 +171,7 @@ void Resource::set_type(char type[2])
      *  Tipul resurse.
      */
 
-     strncpy(this->type, type, 2);
+     memcpy(this->type, type, 2);
 }
 
 void Resource::set_class(char cls[2])
@@ -183,7 +182,8 @@ void Resource::set_class(char cls[2])
      *  Clasa resurseri.
      */
 
-     strncpy(this->cls, cls, 2);
+     memcpy(this->cls, cls, 2);
+
 }
 
 void Resource::set_ttl(char ttl[2])
@@ -194,7 +194,7 @@ void Resource::set_ttl(char ttl[2])
      *  time to live pentru  resurseri.
      */
 
-     strncpy(this->ttl, ttl, 2);
+     memcpy(this->ttl, ttl, 2);
 }
 
 void Resource::set_data(char* data, unsigned short length_data)
@@ -208,8 +208,8 @@ void Resource::set_data(char* data, unsigned short length_data)
      *  Lungimea informatiei
      */
     this->rdata = new char[length_data];
-    strncpy(this->rdata, data, length_data);
-    strncpy(this->rdlength, (char*)&length_data, 2);
+    memcpy(this->rdata, data, length_data);
+    memcpy(this->rdlength, (char*)&length_data, 2);
 }
 
 void Resource::get_name(char **name, unsigned short& length)
@@ -230,7 +230,7 @@ void Resource::get_name(char **name, unsigned short& length)
     else
     {
         *name = new char[this->name_len];
-        strncpy(*name, this->name, this->name_len);
+        memcpy(*name, this->name, this->name_len);
         length = this->name_len;
     }
 }
@@ -243,7 +243,7 @@ void Resource::get_type(char type[2])
      *  Tipul resursei.
      */
 
-     strncpy(type, this->type, 2);
+     memcpy(type, this->type, 2);
 }
 
 void Resource::get_class(char cls[2])
@@ -254,7 +254,7 @@ void Resource::get_class(char cls[2])
      *  Clasa resursei.
      */
 
-     strncpy(cls, this->cls, 2);
+     memcpy(cls, this->cls, 2);
 }
 
 void Resource::get_ttl(char ttl[2])
@@ -265,7 +265,7 @@ void Resource::get_ttl(char ttl[2])
      *  Time to live.
      */
 
-     strncpy(ttl, this->ttl, 2);
+     memcpy(ttl, this->ttl, 2);
 }
 
 void Resource::get_data(char** data, unsigned short& length_data)
@@ -286,7 +286,7 @@ void Resource::get_data(char** data, unsigned short& length_data)
     else
     {
         *data = new char[length_data];
-        strncpy(*data, this->rdata, length_data);
+        memcpy(*data, this->rdata, length_data);
     }
 }
 
@@ -354,7 +354,7 @@ void Tranzaction::set_id(char id[2])
      * @param[in] id
      *  Id-ul tranzactiei
      */
-    strncpy(this->id, id, 2);
+    memcpy(this->id, id, 2);
 }
 
 void Tranzaction::set_flags(char flags[2])
@@ -364,7 +364,7 @@ void Tranzaction::set_flags(char flags[2])
      * @param[in] flags
      *  Flagurile tranzactiei
      * */
-    strncpy(this->flags, flags, 2);
+    memcpy(this->flags, flags, 2);
 }
 
 void Tranzaction::add_question(Question qt)
@@ -382,7 +382,7 @@ void Tranzaction::add_question(Question qt)
      * peste `qcount` care apeleaza `.length` pe `this->questions`
      */
     unsigned short size = this->questions.size();
-    strncpy(this->qcount, (char*)&(size), 2);
+    memcpy(this->qcount, (char*)&(size), 2);
 }
 
 void Tranzaction::add_answer(Resource ans)
@@ -397,7 +397,7 @@ void Tranzaction::add_answer(Resource ans)
 
     /* Updateaza numarul de raspunsuri */
     unsigned short size = this->answers.size();
-    strncpy(this->ancount, (char*)&(size), 2);
+    memcpy(this->ancount, (char*)&(size), 2);
 }
 
 void Tranzaction::add_authority(Resource aut)
@@ -412,7 +412,7 @@ void Tranzaction::add_authority(Resource aut)
 
     /* Updateaza numarul de autoritati */
     unsigned short size = this->authority.size();
-    strncpy(this->nscount, (char*)&(size), 2);
+    memcpy(this->nscount, (char*)&(size), 2);
 }
 
 void Tranzaction::add_additiona_section(Resource res)
@@ -427,7 +427,7 @@ void Tranzaction::add_additiona_section(Resource res)
 
     /* Updateaza numarul de autoritati */
     unsigned short size = this->additional_sections.size();
-    strncpy(this->arcount, (char*)&(size), 2);
+    memcpy(this->arcount, (char*)&(size), 2);
 }
 
 void Tranzaction::get_id(char id[2])
@@ -437,7 +437,7 @@ void Tranzaction::get_id(char id[2])
      * @param[out] id
      *  Id-ul tranzactiei
      */
-    strncpy(id, this->id, 2);
+    memcpy(id, this->id, 2);
 }
 
 void Tranzaction::get_flags(char flags[2])
@@ -447,7 +447,7 @@ void Tranzaction::get_flags(char flags[2])
      * @param[out] flags
      *  Flagurile tranzactiei
      */
-    strncpy(flags, this->flags, 2);
+    memcpy(flags, this->flags, 2);
 }
 
 void Tranzaction::get_qcount_char(char r_qcount[2])
@@ -458,7 +458,7 @@ void Tranzaction::get_qcount_char(char r_qcount[2])
      * @param r_qcount
      *  Numarul de query
      */
-    strncpy(r_qcount, this->qcount, 2);
+    memcpy(r_qcount, this->qcount, 2);
 
 }
 
@@ -479,7 +479,7 @@ void Tranzaction::get_ancount_char(char r_ancount[2])
      * @param r_ancount
      *  Numarul de raspunsuri
      */
-    strncpy(r_ancount, this->ancount, 2);
+    memcpy(r_ancount, this->ancount, 2);
 }
 
 unsigned short Tranzaction::get_ancount_short()
@@ -500,7 +500,7 @@ void Tranzaction::get_nscount_char(char r_nscount[2])
      * @param r_nscount
      *  Numarul de name server authority
      */
-    strncpy(r_nscount, this->nscount, 2);
+    memcpy(r_nscount, this->nscount, 2);
 }
 
 unsigned short Tranzaction::get_nscount_short()
@@ -520,7 +520,7 @@ void Tranzaction::get_arcount_char(char r_arcount[2])
      * @param r_arcount
      *  Numarul de additional records
      */
-    strncpy(r_arcount, this->nscount, 2);
+    memcpy(r_arcount, this->nscount, 2);
 }
 
 unsigned short Tranzaction::get_arcount_short()
