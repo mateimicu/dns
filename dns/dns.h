@@ -29,6 +29,8 @@ class Question
         void get_name(char **name, unsigned short& length);
         void get_type(char* type);
         void get_class(char* qclass);
+
+        void print_info();
 };
 
 class Resource
@@ -40,11 +42,12 @@ class Resource
      *  - nume
      *  - tip
      *  - clasa
+     *  - ttl
      *  - lungimea datelor
      *  - datele
      * */
     private:
-        char *name, type[2], cls[2], rdlength[2],
+        char *name, type[2], cls[2], rdlength[2], ttl[2],
              *rdata;
         unsigned short name_len;
     public:
@@ -52,12 +55,16 @@ class Resource
         void set_name(char* name, unsigned short length);
         void set_type(char type[2]);
         void set_class(char qclass[2]);
+        void set_ttl(char qclass[2]);
         void set_data(char* data, unsigned short length);
 
         void get_name(char** name, unsigned short& length);
         void get_type(char* type);
         void get_class(char* qclass);
+        void get_ttl(char* qclass);
         void get_data(char** data, unsigned short& length);
+
+        void print_info();
 };
 
 class Tranzaction
@@ -105,6 +112,8 @@ class Tranzaction
 
         void get_arcount_char(char arcount[2]);
         unsigned short get_arcount_short();
+
+        void print_info();
 
         std::vector<Question> get_questions();
         std::vector<Resource> get_answers();

@@ -7,6 +7,7 @@
 #include "parser.h"
 #include "exceptions.h"
 #include "server.h"
+#include "reader.h"
 
 using namespace std;
 
@@ -56,30 +57,17 @@ Parser prepare_parser()
 int main(int argc, char *argv[])
 {
     Parser p = prepare_parser();
-    std::cout << "Start0 " << std::endl;
     p.parse(argc, argv);
-    std::cout << "Start1 " << std::endl;
 
     Server s(p["port"]->get_int(), p["backlog"]->get_int());
-    std::cout << "Start2 " << std::endl;
     MAIN_SERVER = &s;
-    std::cout << "Start3 " << std::endl;
 
     std::cout << "Start " << std::endl;
     s.start();
 
-    char ch[100], sd[2];
-    sd[0] = 'a';
-    sd[1] = 'a';
-    socklen_t len_client;
-
-    struct sockaddr client;
-
-    s.read(ch, 100, 0, (struct sockaddr*) &client, &len_client);
-    cout << "AM citit :" <<  ch << endl;
-
-    s.send(sd, 2, 0, (struct sockaddr*) &client, len_client);
-    cout << "AM scris 12:" <<  12 << endl;
+    Reader* r = new Reader();
+    r->set_server(&s);
+    r->read();
 
     s.stop();
     return 0;
