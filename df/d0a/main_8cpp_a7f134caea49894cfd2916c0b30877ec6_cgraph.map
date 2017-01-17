@@ -1,8 +1,0 @@
-<map id="prepare_parser" name="prepare_parser">
-<area shape="rect" id="node2" href="$da/d66/classStrOption.html#ae82f64a4bfccc16e240da9be1c27a1af" title="StrOption::set_default" alt="" coords="168,5,317,32"/>
-<area shape="rect" id="node3" href="$d9/d5f/classBoolOption.html#aa7c5f05f47eb6aac3eb683a34479c700" title="BoolOption::set_default" alt="" coords="163,56,322,83"/>
-<area shape="rect" id="node4" href="$d4/de6/classIntOption.html#aba307ebe98202a4a22461786b6a601f9" title="IntOption::set_default" alt="" coords="169,107,316,133"/>
-<area shape="rect" id="node5" href="$d0/d40/classParser.html#a82030d84501780e322bf678061bd4472" title="Parser::add_option" alt="" coords="177,157,308,184"/>
-<area shape="rect" id="node6" href="$d0/dae/classOption.html#ad1480abdf294cc15fff3d30bc77993d5" title="Option::get_short_name" alt="" coords="371,132,533,159"/>
-<area shape="rect" id="node7" href="$d0/dae/classOption.html#afc451205ac2277f9cdf16b26a651f3da" title="Option::get_long_name" alt="" coords="374,183,530,209"/>
-</map>

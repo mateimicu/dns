@@ -1,9 +1,0 @@
-<map id="TEST_CASE" name="TEST_CASE">
-<area shape="rect" id="node2" href="$da/dcd/classResource.html#af5fb41795c1279dce67b28ac637c93a9" title="Resource::get_name" alt="" coords="155,5,298,32"/>
-<area shape="rect" id="node3" href="$da/dcd/classResource.html#a9366b9a0e4cc421e5c59182665dfebb4" title="Resource::get_type" alt="" coords="159,56,295,83"/>
-<area shape="rect" id="node4" href="$da/dcd/classResource.html#acfab2e8cba27d93a5662f7de9ad21df9" title="Resource::get_class" alt="" coords="155,107,298,133"/>
-<area shape="rect" id="node5" href="$da/dcd/classResource.html#ae84f9b86a1bf17a2cafe88c9b7c7aa73" title="Resource::get_data" alt="" coords="159,157,295,184"/>
-<area shape="rect" id="node6" href="$da/dcd/classResource.html#a258cb5ab77f4c039cdfca8d7dd2cb470" title="Resource::set_name" alt="" coords="155,208,298,235"/>
-<area shape="rect" id="node7" href="$da/dcd/classResource.html#a7e216bb12ad18f9ba3615cf3098bd06b" title="Resource::set_type" alt="" coords="159,259,295,285"/>
-<area shape="rect" id="node8" href="$da/dcd/classResource.html#a5f0a3d4b7652622783affe627f6a9a6f" title="Resource::set_class" alt="" coords="155,309,298,336"/>
-</map>

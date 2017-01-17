@@ -1,7 +1,0 @@
-<map id="Tranzaction::print_info" name="Tranzaction::print_info">
-<area shape="rect" id="node2" href="$d7/d52/dns_8cpp.html#a71e56c73c6668592f5b1fd31de2b41e0" title="print_hex" alt="" coords="253,5,328,32"/>
-<area shape="rect" id="node3" href="$dd/d3c/classTranzaction.html#a692ed80847ef5e66c0e23191cd9068ac" title="Tranzaction::get_qcount\l_short" alt="" coords="209,57,372,98"/>
-<area shape="rect" id="node4" href="$dd/d3c/classTranzaction.html#a0f6907f39da32dea8d67b3979a1d71ed" title="Tranzaction::get_ancount\l_short" alt="" coords="206,122,375,163"/>
-<area shape="rect" id="node5" href="$dd/d3c/classTranzaction.html#a77dfd33f587855b9e6df18986d2cd3bd" title="Tranzaction::get_nscount\l_short" alt="" coords="206,187,375,229"/>
-<area shape="rect" id="node6" href="$dd/d3c/classTranzaction.html#a31568b2213690e330738c6d1f0af326d" title="Tranzaction::get_arcount\l_short" alt="" coords="207,253,374,294"/>
-</map>
