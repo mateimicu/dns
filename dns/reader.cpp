@@ -315,3 +315,9 @@ Tranzaction* Reader::read()
     } /* end while(found) */
     return tr;
 }
+
+Server* Reader::get_server()
+{
+    /* Returneaza serverul de dns */
+    return this->server;
+}
