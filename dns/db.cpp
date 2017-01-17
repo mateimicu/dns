@@ -164,6 +164,10 @@ void DB::_prepare()
 
     /* Adaugam exemplele */
     this->_insert(".google.com", "172.217.22.14");
+    this->_insert(".www.google.com", "172.217.22.14");
+    this->_insert(".www.google.ro", "172.217.22.14");
+    this->_insert(".www.google.ro.home", "172.217.22.14");
+    this->_insert(".matei.micu", "172.217.22.14");
     this->_insert(".example.com", "1.1.1.1");
 }
 
@@ -177,6 +181,11 @@ void DB::_insert(std::string domain, std::string ip)
      * @param[in] ip
      *  Ip-ul asociat domeniului
      */
+
+    /* preatest domeniul pentru formatul specificat
+     * <lenght><data><length><data>
+     */
+
     this->lock.lock();
     memset(this->_ip, 0, this->IP_MAX_SIZE);
 
@@ -217,6 +226,21 @@ std::string DB::get_ip(char* name, unsigned short name_len)
      */
     this->lock.lock();
 
+    std::string real_domail;
+    unsigned char lungime = 0;
+    for (unsigned char i = 0; i < name_len-1; ++i)
+    {
+        lungime = name[i];
+        real_domail = real_domail + std::string(".");
+        for (unsigned char j = i+1 ; j <= i+lungime; ++j)
+        {
+            real_domail = real_domail + std::string(1, name[j]);
+        }
+        i = i + lungime;
+    }
+    name = (char*)real_domail.c_str();
+    std::cout << " ------  Search for " << name << std::endl;
+
     memset(this->_ip, 0, this->IP_MAX_SIZE);
 
     /* Convertim in string */
@@ -224,15 +248,6 @@ std::string DB::get_ip(char* name, unsigned short name_len)
     memset(c_name, 0, name_len+1);
     memcpy(c_name, name, name_len);
     std::string s_name(c_name), ip("");
-
-    /* Filtreaza s_name */
-    for (unsigned int i = 0; i < s_name.size(); ++i)
-    {
-        if (s_name[i] == 3 || s_name[i] == 6) 
-        {
-            s_name[i] = '.';
-        }
-    }
 
     /* NOTE(mmicu): SQL injection DROP TABLE ;) */
     std::string sql = "SELECT " + std::string(DOMAIN)+", " +std::string(IP) +
