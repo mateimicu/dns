@@ -1,0 +1,7 @@
+<map id="Tranzaction::serialize" name="Tranzaction::serialize">
+<area shape="rect" id="node2" href="$d7/d52/dns_8cpp.html#a83c982b1f13ec3b29d8016341b4ce404" title="concat" alt="" coords="255,5,316,32"/>
+<area shape="rect" id="node3" href="$dd/d3c/classTranzaction.html#a692ed80847ef5e66c0e23191cd9068ac" title="Tranzaction::get_qcount\l_short" alt="" coords="204,57,367,98"/>
+<area shape="rect" id="node4" href="$dd/d3c/classTranzaction.html#a0f6907f39da32dea8d67b3979a1d71ed" title="Tranzaction::get_ancount\l_short" alt="" coords="201,122,370,163"/>
+<area shape="rect" id="node5" href="$dd/d3c/classTranzaction.html#a77dfd33f587855b9e6df18986d2cd3bd" title="Tranzaction::get_nscount\l_short" alt="" coords="201,187,370,229"/>
+<area shape="rect" id="node6" href="$dd/d3c/classTranzaction.html#a31568b2213690e330738c6d1f0af326d" title="Tranzaction::get_arcount\l_short" alt="" coords="202,253,369,294"/>
+</map>
