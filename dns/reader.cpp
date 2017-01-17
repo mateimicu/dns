@@ -304,6 +304,7 @@ Tranzaction* Reader::read()
         if (max_index == data_len)
         {
             found = true;
+            tr->set_client(client);
         }
         else
         {

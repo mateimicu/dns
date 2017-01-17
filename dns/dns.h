@@ -6,6 +6,10 @@
 #ifndef DNS_H
 #define DNS_H value
 #include <vector>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
 
 class Question
 {
@@ -31,6 +35,9 @@ class Question
         void get_class(char* qclass);
 
         void print_info();
+
+        std::string serialize();
+        void serialize_hex();
 };
 
 class Resource
@@ -47,7 +54,7 @@ class Resource
      *  - datele
      * */
     private:
-        char *name, type[2], cls[2], rdlength[2], ttl[2],
+        char *name, type[2], cls[2], rdlength[2], ttl[4],
              *rdata;
         unsigned short name_len;
     public:
@@ -55,16 +62,20 @@ class Resource
         void set_name(char* name, unsigned short length);
         void set_type(char type[2]);
         void set_class(char qclass[2]);
-        void set_ttl(char qclass[2]);
+        void set_ttl(char ttl[4]);
         void set_data(char* data, unsigned short length);
 
         void get_name(char** name, unsigned short& length);
         void get_type(char* type);
         void get_class(char* qclass);
-        void get_ttl(char* qclass);
+        void get_ttl(char* ttl);
         void get_data(char** data, unsigned short& length);
 
         void print_info();
+
+        std::string serialize();
+
+        void serialize_hex();
 };
 
 class Tranzaction
@@ -87,6 +98,7 @@ class Tranzaction
         std::vector<Question> questions;
         std::vector<Resource> answers, authority, additional_sections;
         unsigned short _get_short_from_char(char ch[2]);
+        struct sockaddr client;
 
     public:
         Tranzaction();
@@ -113,11 +125,20 @@ class Tranzaction
         void get_arcount_char(char arcount[2]);
         unsigned short get_arcount_short();
 
+        void set_client(sockaddr client);
+        sockaddr get_client();
+
+        void set_flag_response();
+
         void print_info();
 
         std::vector<Question> get_questions();
         std::vector<Resource> get_answers();
         std::vector<Resource> get_authority();
         std::vector<Resource> get_additional_sections();
+
+        std::string serialize();
+
+        void serialize_hex();
 };
 #endif /* ifndef DNS_H */
