@@ -35,7 +35,14 @@ static int callback(void* data, int colnum, char** field_data, char** field_name
     if (colnum == 1)
     {
         /* Verificam existenta */
-        memset(data, '1', DB::IP_MAX_SIZE);
+        if (atoi(field_data[0]) == 0)
+        {
+            memset(data, '0', DB::IP_MAX_SIZE);
+        }
+        else
+        {
+            memset(data, '1', DB::IP_MAX_SIZE);
+        }
     }
     else
     {
@@ -117,9 +124,10 @@ bool DB::_is_prepare()
     }
 
     this->lock.unlock();
+    std::cerr << this->errMsg << std::endl;
     for (int i = 0; i< this->IP_MAX_SIZE; ++i)
     {
-        if (this->_ip[i] != 1)
+        if (this->_ip[i] != '1')
         {
             return false;
         }
@@ -155,8 +163,8 @@ void DB::_prepare()
     this->lock.unlock();
 
     /* Adaugam exemplele */
-    this->_insert("google.com", "172.217.22.14");
-    this->_insert("example.com", "1.1.1.1");
+    this->_insert(".google.com", "172.217.22.14");
+    this->_insert(".example.com", "1.1.1.1");
 }
 
 void DB::_insert(std::string domain, std::string ip)
@@ -217,12 +225,22 @@ std::string DB::get_ip(char* name, unsigned short name_len)
     memcpy(c_name, name, name_len);
     std::string s_name(c_name), ip("");
 
+    /* Filtreaza s_name */
+    for (unsigned int i = 0; i < s_name.size(); ++i)
+    {
+        if (s_name[i] == 3 || s_name[i] == 6) 
+        {
+            s_name[i] = '.';
+        }
+    }
+
     /* NOTE(mmicu): SQL injection DROP TABLE ;) */
     std::string sql = "SELECT " + std::string(DOMAIN)+", " +std::string(IP) +
                       " FROM " + std::string(TABLE_NAME) +
                       " WHERE " + std::string(DOMAIN) +" = '"+ s_name +"';";
 
     int res = sqlite3_exec(this->db, sql.c_str(), callback, (void*)this->_ip, &this->errMsg);
+
 
     if (res != 0)
     {
