@@ -80,7 +80,8 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="title">dns/dns.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;string&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;arpa/inet.h&gt;</code><br/>
 <code>#include &lt;bitset&gt;</code><br/>
@@ -90,14 +91,122 @@ Include dependency graph for dns.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/d7e/dns_8cpp__incl.png" border="0" usemap="#dns_2dns_8cpp" alt=""/></div>
 <map name="dns_2dns_8cpp" id="dns_2dns_8cpp">
-<area shape="rect" id="node11" href="../../d5/d2e/dns_8h.html" title="dns.h" alt="" coords="373,83,427,112"/></map>
+<area shape="rect" id="node13" href="../../d5/d2e/dns_8h.html" title="dns.h" alt="" coords="451,83,504,112"/></map>
 </div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d52/dns_8cpp.html#a71e56c73c6668592f5b1fd31de2b41e0">print_hex</a> (char *ch, int len, bool endl)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d52/dns_8cpp.html#a83c982b1f13ec3b29d8016341b4ce404">concat</a> (char **data, unsigned short &amp;len, char *part1, unsigned short len_1, char *part2, unsigned short len_2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d52/dns_8cpp.html#ac3faacd8796802a6b623d3a1058bec35">print_char</a> (char *ch, int len, bool endl)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d52/dns_8cpp.html#a91cf7a0528c7d12276c9e46be322cede">print_int</a> (char *ch, int len, bool endl)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a83c982b1f13ec3b29d8016341b4ce404"></a><!-- doxytag: member="dns.cpp::concat" ref="a83c982b1f13ec3b29d8016341b4ce404" args="(char **data, unsigned short &amp;len, char *part1, unsigned short len_1, char *part2, unsigned short len_2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d7/d52/dns_8cpp.html#a83c982b1f13ec3b29d8016341b4ce404">concat</a> </td>
+          <td>(</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short &amp;&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>part1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>len_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>part2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>len_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="fragment"><pre class="fragment">{
+    <span class="comment">/* Concataneaza 2 char* in unul nou */</span>
+    <span class="keywordtype">char</span> *data_aux= <span class="keyword">new</span> <span class="keywordtype">char</span>[len_1 + len_2];
+    memcpy(data_aux, part1, len_1);
+    memcpy((data_aux+len_1), part2, len_2);
+
+    *data = data_aux;
+    len = len_1 + len_2;
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="ac3faacd8796802a6b623d3a1058bec35"></a><!-- doxytag: member="dns.cpp::print_char" ref="ac3faacd8796802a6b623d3a1058bec35" args="(char *ch, int len, bool endl)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d7/d52/dns_8cpp.html#ac3faacd8796802a6b623d3a1058bec35">print_char</a> </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>endl</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="fragment"><pre class="fragment">{
+    <span class="comment">/* Afiseaxa caracter cu caracter */</span>
+    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; len; ++i)
+    {
+        std::cout &lt;&lt; ch[i] &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;
+    }
+
+    <span class="keywordflow">if</span> (endl == <span class="keyword">true</span>)
+    {
+        std::cout &lt;&lt; std::endl;
+    }
+}
+</pre></div>
+</div>
+</div>
 <a class="anchor" id="a71e56c73c6668592f5b1fd31de2b41e0"></a><!-- doxytag: member="dns.cpp::print_hex" ref="a71e56c73c6668592f5b1fd31de2b41e0" args="(char *ch, int len, bool endl)" -->
 <div class="memitem">
 <div class="memproto">
@@ -143,6 +252,51 @@ Functions</h2></td></tr>
 </pre></div>
 </div>
 </div>
+<a class="anchor" id="a91cf7a0528c7d12276c9e46be322cede"></a><!-- doxytag: member="dns.cpp::print_int" ref="a91cf7a0528c7d12276c9e46be322cede" args="(char *ch, int len, bool endl)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d7/d52/dns_8cpp.html#a91cf7a0528c7d12276c9e46be322cede">print_int</a> </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>endl</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<div class="fragment"><pre class="fragment">{
+    <span class="comment">/* Afiseaxa caracter cu caracter in int*/</span>
+    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; len; ++i)
+    {
+        std::cout &lt;&lt; (int)ch[i] &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;
+    }
+
+    <span class="keywordflow">if</span> (endl == <span class="keyword">true</span>)
+    {
+        std::cout &lt;&lt; std::endl;
+    }
+}
+</pre></div>
+</div>
+</div>
 </div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -161,7 +315,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 16 2017 21:24:33 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 17 2017 20:55:43 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

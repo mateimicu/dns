@@ -6,6 +6,7 @@ var searchData=
   ['s2i_5funderflow',['S2I_UNDERFLOW',['../dc/ddd/parser_8cpp.html#aaf14e51803c99f157336b2fe3748086ba3260b326f18cae650317681d3efb0026',1,'parser.cpp']]],
   ['server_2ecpp',['server.cpp',['../df/dd7/server_8cpp.html',1,'']]],
   ['server_2eh',['server.h',['../d8/dc3/server_8h.html',1,'']]],
+  ['signalhandler',['signalHandler',['../df/d0a/main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61',1,'main.cpp']]],
   ['str2int',['str2int',['../dc/ddd/parser_8cpp.html#a2c7177f43417b9205f068d4a9545d63b',1,'parser.cpp']]],
   ['str2int_5ferror',['STR2INT_ERROR',['../dc/ddd/parser_8cpp.html#aaf14e51803c99f157336b2fe3748086b',1,'parser.cpp']]]
 ];

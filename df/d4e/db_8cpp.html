@@ -158,7 +158,14 @@ Variables</h2></td></tr>
     <span class="keywordflow">if</span> (colnum == 1)
     {
         <span class="comment">/* Verificam existenta */</span>
-        memset(data, <span class="charliteral">&#39;1&#39;</span>, DB::IP_MAX_SIZE);
+        <span class="keywordflow">if</span> (atoi(field_data[0]) == 0)
+        {
+            memset(data, <span class="charliteral">&#39;0&#39;</span>, DB::IP_MAX_SIZE);
+        }
+        <span class="keywordflow">else</span>
+        {
+            memset(data, <span class="charliteral">&#39;1&#39;</span>, DB::IP_MAX_SIZE);
+        }
     }
     <span class="keywordflow">else</span>
     {
@@ -235,7 +242,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 16 2017 21:24:33 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 17 2017 20:55:43 for DNS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

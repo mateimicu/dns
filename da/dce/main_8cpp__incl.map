@@ -1,8 +1,9 @@
 <map id="G" name="G">
-<area shape="rect" id="node5" href="$d5/d36/parser_8h.html" title="parser.h" alt="" coords="149,160,219,189"/>
-<area shape="rect" id="node11" href="$d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="619,237,715,267"/>
-<area shape="rect" id="node16" href="$d8/dc3/server_8h.html" title="server.h" alt="" coords="275,160,344,189"/>
-<area shape="rect" id="node27" href="$d6/dda/reader_8h.html" title="reader.h" alt="" coords="152,83,221,112"/>
-<area shape="rect" id="node34" href="$da/d4e/db_8h.html" title="db.h" alt="" coords="432,83,477,112"/>
-<area shape="rect" id="node31" href="$d5/d2e/dns_8h.html" title="dns.h" alt="" coords="72,160,125,189"/>
+<area shape="rect" id="node7" href="$d5/d36/parser_8h.html" title="parser.h" alt="" coords="849,237,918,267"/>
+<area shape="rect" id="node13" href="$d4/d03/exceptions_8h.html" title="exceptions.h" alt="" coords="177,315,273,344"/>
+<area shape="rect" id="node18" href="$d8/dc3/server_8h.html" title="server.h" alt="" coords="407,237,477,267"/>
+<area shape="rect" id="node29" href="$d6/dda/reader_8h.html" title="reader.h" alt="" coords="683,160,753,189"/>
+<area shape="rect" id="node41" href="$da/d4e/db_8h.html" title="db.h" alt="" coords="139,160,185,189"/>
+<area shape="rect" id="node48" href="$da/da5/worker_8h.html" title="worker.h" alt="" coords="374,83,446,112"/>
+<area shape="rect" id="node33" href="$d5/d2e/dns_8h.html" title="dns.h" alt="" coords="683,237,737,267"/>
 </map>
