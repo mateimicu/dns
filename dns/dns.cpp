@@ -2,7 +2,7 @@
  * GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
  * Author: Micu Matei-Marius
  */
-
+#include <string>
 #include <string.h>
 #include <iostream>
 #include <arpa/inet.h>
@@ -17,6 +17,46 @@ void print_hex(char *ch, int len, bool endl)
     for (int i = 0; i < len; ++i)
     {
         std::cout << std::hex << (int)ch[i] << " ";
+    }
+
+    if (endl == true)
+    {
+        std::cout << std::endl;
+    }
+}
+
+void concat(char** data, unsigned short&len, char* part1,
+            unsigned short len_1, char* part2, unsigned short len_2)
+{
+    /* Concataneaza 2 char* in unul nou */
+    char *data_aux= new char[len_1 + len_2];
+    memcpy(data_aux, part1, len_1);
+    memcpy((data_aux+len_1), part2, len_2);
+
+    *data = data_aux;
+    len = len_1 + len_2;
+}
+
+void print_char(char *ch, int len, bool endl)
+{
+    /* Afiseaxa caracter cu caracter */
+    for (int i = 0; i < len; ++i)
+    {
+        std::cout << ch[i] << " ";
+    }
+
+    if (endl == true)
+    {
+        std::cout << std::endl;
+    }
+}
+
+void print_int(char *ch, int len, bool endl)
+{
+    /* Afiseaxa caracter cu caracter in int*/
+    for (int i = 0; i < len; ++i)
+    {
+        std::cout << (int)ch[i] << " ";
     }
 
     if (endl == true)
@@ -125,6 +165,10 @@ void Question::print_info()
     /* Printeaza informatii despre o intrebare */
     std::cout <<"  Name :";
     print_hex(this->qname, this->qname_len, true);
+    std::cout <<"  Name :";
+    print_int(this->qname, this->qname_len, true);
+    std::cout <<"  Name :";
+    print_char(this->qname, this->qname_len, true);
     std::cout <<"  Lungime :" << (int)this->qname_len << std::endl;
 
     std::cout <<" Type: ";
@@ -133,6 +177,33 @@ void Question::print_info()
     std::cout <<" Class: ";
     print_hex(this->qclass, 2, true);
     std::cout << std::endl;
+}
+
+void Question::serialize(char** data, unsigned short& len)
+{
+    /* Serializeaza obiectul curent */
+    char aux[this->qname_len];
+    memset(aux, 0, this->qname_len);
+    memcpy(aux, this->qname, this->qname_len);
+    concat(data, len, aux, (this->qname_len), NULL, 0);
+
+    char aux_2[2];
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, this->qtype, 2);
+    concat(data, len, *data, len, aux_2, 2);
+
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, this->qclass, 2);
+    concat(data, len, *data, len, aux_2, 2);
+}
+
+void Question::serialize_hex()
+{
+    /* Afiseaza la stdout hexa serializari obiectului curent */
+    char* data;
+    unsigned short len;
+    this->serialize(&data, len);
+    print_hex(data, len, true);
 }
 
 Resource::Resource()
@@ -186,15 +257,15 @@ void Resource::set_class(char cls[2])
 
 }
 
-void Resource::set_ttl(char ttl[2])
+void Resource::set_ttl(char ttl[4])
 {
     /* Seteaza time to live unei resurse
      *
-     * @param[in] ttl[2]
+     * @param[in] ttl[4]
      *  time to live pentru  resurseri.
      */
 
-     memcpy(this->ttl, ttl, 2);
+     memcpy(this->ttl, ttl, 4);
 }
 
 void Resource::set_data(char* data, unsigned short length_data)
@@ -207,6 +278,7 @@ void Resource::set_data(char* data, unsigned short length_data)
      * @param[in] length_data
      *  Lungimea informatiei
      */
+
     this->rdata = new char[length_data];
     memcpy(this->rdata, data, length_data);
     memcpy(this->rdlength, (char*)&length_data, 2);
@@ -257,15 +329,15 @@ void Resource::get_class(char cls[2])
      memcpy(cls, this->cls, 2);
 }
 
-void Resource::get_ttl(char ttl[2])
+void Resource::get_ttl(char ttl[4])
 {
      /* Returneaza time tp live pentru o resurse
      *
-     * @param[out] ttl[2]
+     * @param[out] ttl[4]
      *  Time to live.
      */
 
-     memcpy(ttl, this->ttl, 2);
+     memcpy(ttl, this->ttl, 4);
 }
 
 void Resource::get_data(char** data, unsigned short& length_data)
@@ -295,6 +367,10 @@ void Resource::print_info()
     /* Printeaza informatii despre resurs */
     std::cout << "  Name :";
     print_hex(this->name, this->name_len, true);
+    std::cout << "  Name :";
+    print_int(this->name, this->name_len, true);
+    std::cout << "  Name :";
+    print_char(this->name, this->name_len, true);
     std::cout <<" Len. Name: " << this->name_len << std::endl;
 
     std::cout << "  Type:";
@@ -304,15 +380,69 @@ void Resource::print_info()
     print_hex(this->cls, 2, true);
 
     std::cout << "  TTL:";
-    print_hex(this->ttl, 2, true);
+    print_hex(this->ttl, 4, true);
 
-    std::cout << " Data:";
     unsigned short len;
     memcpy(&len, this->rdlength, 2);
     len = ntohs(len);
+
+    std::cout << " Data:";
     print_hex(this->rdata, len, true);
 
+    std::cout << " Data:";
+    print_int(this->rdata, len, true);
+
+    std::cout << " Data:";
+    print_char(this->rdata, len, true);
+
     std::cout << "  Len. Data:" << len << std::endl << std::endl;
+}
+
+void Resource::serialize(char** data, unsigned short& data_len)
+{
+    /* Serializeaza obiectul curent */
+    char aux[this->name_len];
+    memset(aux, 0, this->name_len);
+    memcpy(aux, this->name, this->name_len);
+    concat(data, data_len, aux, this->name_len, NULL, 0);
+
+    char aux_2[2];
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, this->type, 2);
+    concat(data, data_len, *data, data_len, aux_2, 2);
+
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, this->cls, 2);
+    concat(data, data_len, *data, data_len, aux_2, 2);
+
+    char aux_4[4];
+    bzero(aux_4, sizeof(aux_4));
+    memcpy(aux_4, this->ttl, 4);
+    concat(data, data_len, *data, data_len, aux_4, 4);
+
+    /* rdlen */
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, this->rdlength, 2);
+    concat(data, data_len, *data, data_len, aux_2, 2);
+
+    /* rdata */
+    unsigned short len;
+    memcpy(&len, this->rdlength, 2);
+    len = ntohs(len);
+
+    char aux_data[len+1];
+    memset(aux_data, 0, len+1);
+    memcpy(aux_data, this->rdata, len);
+    concat(data, data_len, *data, data_len, aux_data, len);
+}
+
+void Resource::serialize_hex()
+{
+    /* Afiseaza la stdout hexa serializari obiectului curent */
+    char* data;
+    unsigned short len;
+    this->serialize(&data, len);
+    print_hex(data, len, true);
 }
 
 Tranzaction::Tranzaction()
@@ -557,6 +687,35 @@ std::vector<Resource> Tranzaction::get_additional_sections()
     return this->additional_sections;
 }
 
+void Tranzaction::set_client(sockaddr client)
+{
+    /* Setam un client pentru tranzactia asta
+     *
+     * @param[in] client
+     *  Clientul pe care dorim sa il setam
+     */
+    this->client = client;
+}
+
+sockaddr Tranzaction::get_client()
+{
+    /* Returnam clientul */
+    return this->client;
+}
+
+void Tranzaction::set_flag_response()
+{
+    /* Setam flagul pentru aceasta tranzactie sa fie un response */
+    this->flags[0] |= 128;
+}
+
+void Tranzaction::set_flag_notfound()
+{
+    /* Nu am gasit numele */
+    this->flags[1] |= 1;
+    this->flags[1] |= 2;
+}
+
 void Tranzaction::print_info()
 {
     /* Printeaza infomatii despre tranzactie */
@@ -601,4 +760,88 @@ void Tranzaction::print_info()
     }
 
     std::cout << " ------------------ " << std::endl << std::endl;
+}
+
+void Tranzaction::serialize(char** data, unsigned short& len)
+{
+    /* Serializeaza obiectul curent
+     *
+     * @param[out] data
+     * pointer catre array
+     *
+     * @param[out] len
+     * lungimea
+     */
+
+    /* id */
+    char aux_2[3];
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, this->id, 2);
+    concat(data, len, aux_2, 2, NULL, 0);
+
+    /* flags */
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, this->flags, 2);
+    concat(data, len, *data, len, aux_2, 2);
+
+    unsigned short s = htons(this->get_qcount_short());
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, (char*)&s, 2);
+    concat(data, len, *data, len, aux_2, 2);
+
+
+    s = htons(this->get_ancount_short());
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, (char*)&s, 2);
+    concat(data, len, *data, len, aux_2, 2);
+
+    s = htons(this->get_nscount_short());
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, (char*)&s, 2);
+    concat(data, len, *data, len, aux_2, 2);
+
+    s = htons(this->get_arcount_short());
+    bzero(aux_2, sizeof(aux_2));
+    memcpy(aux_2, (char*)&s, 2);
+    concat(data, len, *data, len, aux_2, 2);
+
+    char *aux_data;
+    unsigned short aux_data_len;
+
+    for (std::vector<Question>::iterator it = this->questions.begin();
+         it != this->questions.end(); ++it)
+    {
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
+    }
+
+    for (std::vector<Resource>::iterator it = this->answers.begin();
+         it != this->answers.end(); ++it)
+    {
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
+    }
+
+    for (std::vector<Resource>::iterator it = this->authority.begin();
+         it != this->authority.end(); ++it)
+    {
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
+    }
+
+    for (std::vector<Resource>::iterator it = this->additional_sections.begin();
+         it != this->additional_sections.end(); ++it)
+    {
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
+    }
+}
+
+void Tranzaction::serialize_hex()
+{
+    /* Afiseaza la stdout hexa serializari obiectului curent */
+    char* data;
+    unsigned short len;
+    this->serialize(&data, len);
+    print_hex(data, len, true);
 }

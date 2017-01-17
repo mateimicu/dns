@@ -2,7 +2,7 @@ BASEDIR=dns/
 CC=g++
 CFLAGS= -g -Werror=all -std=c++0x
 LIBS= -l sqlite3
-UTILS=$(BASEDIR)parser.cpp $(BASEDIR)exceptions.cpp $(BASEDIR)dns.cpp $(BASEDIR)server.cpp $(BASEDIR)reader.cpp $(BASEDIR)db.cpp
+UTILS=$(BASEDIR)parser.cpp $(BASEDIR)exceptions.cpp $(BASEDIR)dns.cpp $(BASEDIR)server.cpp $(BASEDIR)reader.cpp $(BASEDIR)db.cpp $(BASEDIR)worker.cpp
 MAIN=$(BASEDIR)main.cpp
 EXECUTABLE=$(BASEDIR)dns
 

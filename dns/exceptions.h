@@ -12,24 +12,26 @@
 
 class BaseException : public std::exception
 {
-    /* Exceptie de baza pentru tot proiectul */
-   const char * what () const throw ();
+    public:
+        /* Exceptie de baza pentru tot proiectul */
+        const char * what () const throw ();
 };
 
 /* Parser Exceptions */
 
 class ParserException: public BaseException
 {
-    /* Exceptie de baza pentru Parserul proiectului */
-   const char * what () const throw ();
+    public:
+        /* Exceptie de baza pentru tot proiectul */
+        const char * what () const throw ();
 };
 
 
 class OptionException: public ParserException
 {
-    /* Exceptie de baza pentru Parserul proiectului */
-    const char * what () throw ();
     public:
+        /* Exceptie de baza pentru Parserul proiectului */
+        const char * what () throw ();
         std::string primit;
         OptionException(std::string& primit);
         ~OptionException() throw ();
@@ -39,137 +41,154 @@ class OptionException: public ParserException
 /* Int Eceptions */
 class IntException: public OptionException
 {
-    /* Exceptie de baza pentru IntOption */
-   const char * what () throw ();
     public:
+        /* Exceptie de baza pentru IntOption */
+        const char * what () throw ();
         IntException(std::string& primit);
 };
 
 class IntValueError: public IntException
 {
-    /* Valoarea primita pentru aceasta optiune nu este corecta */
-    const char * what () const throw ();
     public:
+        /* Valoarea primita pentru aceasta optiune nu este corecta */
+        const char * what () const throw ();
         IntValueError(std::string& primit);
 };
 
 /* Str Eceptions */
 class StrException: public OptionException
 {
-    /* Exceptie de baza pentru StrOption */
-   const char * what () throw ();
     public:
+        /* Exceptie de baza pentru StrOption */
+        const char * what () throw ();
         StrException(std::string& primit);
 };
 
 
 class StrValueError: public StrException
 {
-    /* Valoarea primita pentru aceasta optiune nu este corecta */
-   const char * what () throw ();
     public:
+        /* Valoarea primita pentru aceasta optiune nu este corecta */
+        const char * what () throw ();
         StrValueError(std::string& primit);
 };
 
 /* Bool Eceptions */
 class BoolException: public OptionException
 {
-    /* Exceptie de baza pentru BoolOption */
-    const char * what () throw ();
     public:
+        /* Exceptie de baza pentru BoolOption */
+        const char * what () throw ();
         BoolException(std::string& primit);
 };
 
 class BoolValueError: public BoolException
 {
-    /* Valoarea primita pentru aceasta optiune nu este corecta */
-   const char * what () throw ();
     public:
+        /* Valoarea primita pentru aceasta optiune nu este corecta */
+        const char * what () throw ();
         BoolValueError(std::string& primit);
 };
 
 class InvalidOptionException: public ParserException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class ArgumentsLeft: public ParserException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class NotTheRightType: public ParserException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class ServerException: public BaseException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class SocketException: public ServerException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class BindException: public ServerException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class ListenException: public ServerException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class NotOpenException: public ServerException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class ServerNotOpen: public ServerException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class ServerReadError: public ServerException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class ReaderError: public BaseException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class ReaderValueError: public ReaderError
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class DBException: public BaseException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class DBConnectionException: public BaseException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class DBCreateException: public BaseException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class DBSelectException: public BaseException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 
 class DBMalformedTable: public BaseException
 {
-   const char * what () const throw ();
+    public:
+        const char * what () const throw ();
 };
 #endif /* ifndef EXCEPTIONS_H */

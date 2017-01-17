@@ -35,7 +35,14 @@ static int callback(void* data, int colnum, char** field_data, char** field_name
     if (colnum == 1)
     {
         /* Verificam existenta */
-        memset(data, '1', DB::IP_MAX_SIZE);
+        if (atoi(field_data[0]) == 0)
+        {
+            memset(data, '0', DB::IP_MAX_SIZE);
+        }
+        else
+        {
+            memset(data, '1', DB::IP_MAX_SIZE);
+        }
     }
     else
     {
@@ -117,9 +124,10 @@ bool DB::_is_prepare()
     }
 
     this->lock.unlock();
+    std::cerr << this->errMsg << std::endl;
     for (int i = 0; i< this->IP_MAX_SIZE; ++i)
     {
-        if (this->_ip[i] != 1)
+        if (this->_ip[i] != '1')
         {
             return false;
         }
@@ -155,8 +163,12 @@ void DB::_prepare()
     this->lock.unlock();
 
     /* Adaugam exemplele */
-    this->_insert("google.com", "172.217.22.14");
-    this->_insert("example.com", "1.1.1.1");
+    this->_insert(".google.com", "172.217.22.14");
+    this->_insert(".www.google.com", "172.217.22.14");
+    this->_insert(".www.google.ro", "172.217.22.14");
+    this->_insert(".www.google.ro.home", "172.217.22.14");
+    this->_insert(".matei.micu", "172.217.22.14");
+    this->_insert(".example.com", "1.1.1.1");
 }
 
 void DB::_insert(std::string domain, std::string ip)
@@ -169,6 +181,11 @@ void DB::_insert(std::string domain, std::string ip)
      * @param[in] ip
      *  Ip-ul asociat domeniului
      */
+
+    /* preatest domeniul pentru formatul specificat
+     * <lenght><data><length><data>
+     */
+
     this->lock.lock();
     memset(this->_ip, 0, this->IP_MAX_SIZE);
 
@@ -209,6 +226,21 @@ std::string DB::get_ip(char* name, unsigned short name_len)
      */
     this->lock.lock();
 
+    std::string real_domail;
+    unsigned char lungime = 0;
+    for (unsigned char i = 0; i < name_len-1; ++i)
+    {
+        lungime = name[i];
+        real_domail = real_domail + std::string(".");
+        for (unsigned char j = i+1 ; j <= i+lungime; ++j)
+        {
+            real_domail = real_domail + std::string(1, name[j]);
+        }
+        i = i + lungime;
+    }
+    name = (char*)real_domail.c_str();
+    std::cout << " ------  Search for " << name << std::endl;
+
     memset(this->_ip, 0, this->IP_MAX_SIZE);
 
     /* Convertim in string */
@@ -223,6 +255,7 @@ std::string DB::get_ip(char* name, unsigned short name_len)
                       " WHERE " + std::string(DOMAIN) +" = '"+ s_name +"';";
 
     int res = sqlite3_exec(this->db, sql.c_str(), callback, (void*)this->_ip, &this->errMsg);
+
 
     if (res != 0)
     {

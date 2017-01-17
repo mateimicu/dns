@@ -304,6 +304,7 @@ Tranzaction* Reader::read()
         if (max_index == data_len)
         {
             found = true;
+            tr->set_client(client);
         }
         else
         {
@@ -313,4 +314,10 @@ Tranzaction* Reader::read()
         tr->print_info();
     } /* end while(found) */
     return tr;
+}
+
+Server* Reader::get_server()
+{
+    /* Returneaza serverul de dns */
+    return this->server;
 }

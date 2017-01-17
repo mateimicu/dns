@@ -33,6 +33,7 @@ class Reader
     public:
         Reader();
         void set_server(Server* s);
+        Server *get_server();
         Tranzaction* read();
         ~Reader();
 };
