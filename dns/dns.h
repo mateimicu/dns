@@ -36,7 +36,7 @@ class Question
 
         void print_info();
 
-        std::string serialize();
+        void serialize(char** data, unsigned short& len);
         void serialize_hex();
 };
 
@@ -73,7 +73,7 @@ class Resource
 
         void print_info();
 
-        std::string serialize();
+        void serialize(char** data, unsigned short& len);
 
         void serialize_hex();
 };
@@ -129,6 +129,7 @@ class Tranzaction
         sockaddr get_client();
 
         void set_flag_response();
+        void set_flag_notfound();
 
         void print_info();
 
@@ -137,7 +138,7 @@ class Tranzaction
         std::vector<Resource> get_authority();
         std::vector<Resource> get_additional_sections();
 
-        std::string serialize();
+        void serialize(char** data, unsigned short& len);
 
         void serialize_hex();
 };

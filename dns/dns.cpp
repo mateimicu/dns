@@ -25,6 +25,18 @@ void print_hex(char *ch, int len, bool endl)
     }
 }
 
+void concat(char** data, unsigned short&len, char* part1,
+            unsigned short len_1, char* part2, unsigned short len_2)
+{
+    /* Concataneaza 2 char* in unul nou */
+    char *data_aux= new char[len_1 + len_2];
+    memcpy(data_aux, part1, len_1);
+    memcpy((data_aux+len_1), part2, len_2);
+
+    *data = data_aux;
+    len = len_1 + len_2;
+}
+
 void print_char(char *ch, int len, bool endl)
 {
     /* Afiseaxa caracter cu caracter */
@@ -167,32 +179,31 @@ void Question::print_info()
     std::cout << std::endl;
 }
 
-std::string Question::serialize()
+void Question::serialize(char** data, unsigned short& len)
 {
     /* Serializeaza obiectul curent */
-    char aux[this->qname_len+1];
-    memset(aux, 0, this->qname_len+1);
+    char aux[this->qname_len];
+    memset(aux, 0, this->qname_len);
     memcpy(aux, this->qname, this->qname_len);
+    concat(data, len, aux, (this->qname_len), NULL, 0);
 
-    std::string to_ret = std::string(aux);
-
-    char aux_2[3];
+    char aux_2[2];
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, this->qtype, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, len, *data, len, aux_2, 2);
 
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, this->qclass, 2);
-    to_ret = to_ret + std::string(aux_2);
-
-    return to_ret;
+    concat(data, len, *data, len, aux_2, 2);
 }
 
 void Question::serialize_hex()
 {
     /* Afiseaza la stdout hexa serializari obiectului curent */
-    std::string ser = this->serialize();
-    print_hex((char*)ser.c_str(), ser.size(), true);
+    char* data;
+    unsigned short len;
+    this->serialize(&data, len);
+    print_hex(data, len, true);
 }
 
 Resource::Resource()
@@ -267,15 +278,10 @@ void Resource::set_data(char* data, unsigned short length_data)
      * @param[in] length_data
      *  Lungimea informatiei
      */
-    std::cout << "Data :" << data << std::endl;
-    std::cout << "len :" << length_data << std::endl;
 
     this->rdata = new char[length_data];
     memcpy(this->rdata, data, length_data);
     memcpy(this->rdlength, (char*)&length_data, 2);
-
-    std::cout << "Data :" << this->rdata << std::endl;
-    std::cout << "len :" << (unsigned short)(*this->rdlength) << std::endl;
 }
 
 void Resource::get_name(char **name, unsigned short& length)
@@ -392,33 +398,32 @@ void Resource::print_info()
     std::cout << "  Len. Data:" << len << std::endl << std::endl;
 }
 
-std::string Resource::serialize()
+void Resource::serialize(char** data, unsigned short& data_len)
 {
     /* Serializeaza obiectul curent */
-    char aux[this->name_len+1];
-    memset(aux, 0, this->name_len+1);
+    char aux[this->name_len];
+    memset(aux, 0, this->name_len);
     memcpy(aux, this->name, this->name_len);
+    concat(data, data_len, aux, this->name_len, NULL, 0);
 
-    std::string to_ret = std::string(aux);
-
-    char aux_2[3];
+    char aux_2[2];
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, this->type, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, data_len, *data, data_len, aux_2, 2);
 
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, this->cls, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, data_len, *data, data_len, aux_2, 2);
 
-    char aux_4[5];
+    char aux_4[4];
     bzero(aux_4, sizeof(aux_4));
     memcpy(aux_4, this->ttl, 4);
-    to_ret = to_ret + std::string(aux_4);
+    concat(data, data_len, *data, data_len, aux_4, 4);
 
     /* rdlen */
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, this->rdlength, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, data_len, *data, data_len, aux_2, 2);
 
     /* rdata */
     unsigned short len;
@@ -427,17 +432,17 @@ std::string Resource::serialize()
 
     char aux_data[len+1];
     memset(aux_data, 0, len+1);
-    memcpy(aux, this->rdata, len);
-    to_ret = to_ret + std::string(aux_data);
-
-    return to_ret;
+    memcpy(aux_data, this->rdata, len);
+    concat(data, data_len, *data, data_len, aux_data, len);
 }
 
 void Resource::serialize_hex()
 {
     /* Afiseaza la stdout hexa serializari obiectului curent */
-    std::string ser = this->serialize();
-    print_hex((char*)ser.c_str(), ser.size(), true);
+    char* data;
+    unsigned short len;
+    this->serialize(&data, len);
+    print_hex(data, len, true);
 }
 
 Tranzaction::Tranzaction()
@@ -687,7 +692,7 @@ void Tranzaction::set_client(sockaddr client)
     /* Setam un client pentru tranzactia asta
      *
      * @param[in] client
-     *  Clientul pe care dorim sa il setam 
+     *  Clientul pe care dorim sa il setam
      */
     this->client = client;
 }
@@ -701,7 +706,14 @@ sockaddr Tranzaction::get_client()
 void Tranzaction::set_flag_response()
 {
     /* Setam flagul pentru aceasta tranzactie sa fie un response */
-    this->flags[0] = this->flags[0] | 1 << 8;
+    this->flags[0] |= 128;
+}
+
+void Tranzaction::set_flag_notfound()
+{
+    /* Nu am gasit numele */
+    this->flags[1] |= 1;
+    this->flags[1] |= 2;
 }
 
 void Tranzaction::print_info()
@@ -750,72 +762,86 @@ void Tranzaction::print_info()
     std::cout << " ------------------ " << std::endl << std::endl;
 }
 
-std::string Tranzaction::serialize()
+void Tranzaction::serialize(char** data, unsigned short& len)
 {
-    /* TODO(mmicu) : finish me + seteaza flagurile cum trebuie */
-    /* Serializeaza obiectul curent */
+    /* Serializeaza obiectul curent
+     *
+     * @param[out] data
+     * pointer catre array
+     *
+     * @param[out] len
+     * lungimea
+     */
 
     /* id */
     char aux_2[3];
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, this->id, 2);
-    std::string to_ret = std::string(aux_2);
+    concat(data, len, aux_2, 2, NULL, 0);
 
     /* flags */
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, this->flags, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, len, *data, len, aux_2, 2);
 
     unsigned short s = htons(this->get_qcount_short());
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, (char*)&s, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, len, *data, len, aux_2, 2);
+
 
     s = htons(this->get_ancount_short());
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, (char*)&s, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, len, *data, len, aux_2, 2);
 
     s = htons(this->get_nscount_short());
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, (char*)&s, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, len, *data, len, aux_2, 2);
 
     s = htons(this->get_arcount_short());
     bzero(aux_2, sizeof(aux_2));
     memcpy(aux_2, (char*)&s, 2);
-    to_ret = to_ret + std::string(aux_2);
+    concat(data, len, *data, len, aux_2, 2);
+
+    char *aux_data;
+    unsigned short aux_data_len;
 
     for (std::vector<Question>::iterator it = this->questions.begin();
          it != this->questions.end(); ++it)
     {
-        to_ret = to_ret + (*it).serialize();
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
     }
 
     for (std::vector<Resource>::iterator it = this->answers.begin();
          it != this->answers.end(); ++it)
     {
-        to_ret = to_ret + (*it).serialize();
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
     }
 
     for (std::vector<Resource>::iterator it = this->authority.begin();
          it != this->authority.end(); ++it)
     {
-        to_ret = to_ret + (*it).serialize();
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
     }
 
     for (std::vector<Resource>::iterator it = this->additional_sections.begin();
          it != this->additional_sections.end(); ++it)
     {
-        to_ret = to_ret + (*it).serialize();
+        (*it).serialize(&aux_data, aux_data_len);
+        concat(data, len, *data, len, aux_data, aux_data_len);
     }
-
-    return to_ret;
 }
 
 void Tranzaction::serialize_hex()
 {
     /* Afiseaza la stdout hexa serializari obiectului curent */
-    std::string ser = this->serialize();
-    print_hex((char*)ser.c_str(), ser.size(), true);
+    char* data;
+    unsigned short len;
+    this->serialize(&data, len);
+    print_hex(data, len, true);
 }
